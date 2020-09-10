@@ -1,7 +1,7 @@
-import 'package:article_images/screens/SettingScreen.dart';
+import 'package:article_images/screens/settings_screen.dart';
 import 'package:article_images/screens/play_screen.dart';
-import 'package:article_images/utils/Article.dart';
-import 'package:article_images/widgets/Background.dart';
+import 'package:article_images/utils/article.dart';
+import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/theme_button.dart';
 import 'package:flutter/material.dart';
 

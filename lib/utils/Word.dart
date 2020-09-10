@@ -1,10 +1,9 @@
 import 'dart:typed_data';
 
-import 'package:article_images/utils/Image.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
+import 'package:article_images/utils/image.dart';
 import 'package:http/http.dart' as http;
 
-import 'Article.dart';
+import 'article.dart';
 
 class Word {
   int id;

@@ -1,5 +1,5 @@
-import 'package:article_images/screens/SettingScreen.dart';
-import 'package:article_images/utils/PrivacyDialogBuilder.dart';
+import 'package:article_images/screens/settings_screen.dart';
+import 'package:article_images/utils/privacy_dialog_builder.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

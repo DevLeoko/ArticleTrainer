@@ -1,5 +1,5 @@
 import 'package:article_images/manager/score_manager.dart';
-import 'package:article_images/utils/WordDataStore.dart';
+import 'package:article_images/utils/word_data_store.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 void logStats() {

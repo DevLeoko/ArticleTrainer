@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Background.dart';
+import 'background.dart';
 import 'home_button.dart';
 
 class InteractiveBase extends StatelessWidget {

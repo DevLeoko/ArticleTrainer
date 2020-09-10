@@ -1,6 +1,6 @@
 import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/screens/home_screen.dart';
-import 'package:article_images/widgets/Background.dart';
+import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/home_button.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';

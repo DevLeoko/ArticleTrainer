@@ -1,4 +1,4 @@
-import 'package:article_images/screens/SettingScreen.dart';
+import 'package:article_images/screens/settings_screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

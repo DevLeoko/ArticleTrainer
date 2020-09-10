@@ -1,10 +1,10 @@
 import 'package:article_images/manager/analytics.dart';
 import 'package:article_images/manager/score_manager.dart';
 import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/utils/RatingDialogBuilder.dart';
-import 'package:article_images/utils/Word.dart';
-import 'package:article_images/utils/WordDataStore.dart';
-import 'package:article_images/widgets/ScoreView.dart';
+import 'package:article_images/utils/rating_dialog_builder.dart';
+import 'package:article_images/utils/word.dart';
+import 'package:article_images/utils/word_data_store.dart';
+import 'package:article_images/widgets/score_view.dart';
 import 'package:article_images/widgets/interactive_base.dart';
 import 'package:article_images/widgets/quiz.dart';
 import 'package:flutter/material.dart';

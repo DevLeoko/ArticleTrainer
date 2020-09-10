@@ -1,12 +1,12 @@
 import 'package:article_images/screens/home_screen.dart';
-import 'package:article_images/utils/WordDataStore.dart';
-import 'package:article_images/widgets/Background.dart';
+import 'package:article_images/utils/word_data_store.dart';
+import 'package:article_images/widgets/background.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:article_images/utils/Article.dart';
-import 'package:article_images/utils/Word.dart';
-import 'package:article_images/widgets/WordView.dart';
+import 'package:article_images/utils/article.dart';
+import 'package:article_images/utils/word.dart';
+import 'package:article_images/widgets/word_view.dart';
 import 'package:article_images/widgets/theme_button.dart';
 
 class Quiz extends StatefulWidget {

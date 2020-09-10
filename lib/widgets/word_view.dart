@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:article_images/state/QuizState.dart';
-import 'package:article_images/utils/Article.dart';
-import 'package:article_images/utils/Word.dart';
+import 'package:article_images/utils/article.dart';
+import 'package:article_images/utils/word.dart';
 
 class WordView extends StatelessWidget {
   const WordView({

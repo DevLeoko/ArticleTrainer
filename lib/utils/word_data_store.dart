@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'Word.dart';
+import 'word.dart';
 
 class WordDataStore {
   Database _database;

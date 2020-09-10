@@ -1,4 +1,4 @@
-import 'package:article_images/screens/SettingScreen.dart';
+import 'package:article_images/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/home_screen.dart';

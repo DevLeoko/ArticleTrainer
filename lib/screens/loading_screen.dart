@@ -1,7 +1,7 @@
 import 'package:article_images/manager/score_manager.dart';
 import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/utils/WordDataStore.dart';
-import 'package:article_images/widgets/Background.dart';
+import 'package:article_images/utils/word_data_store.dart';
+import 'package:article_images/widgets/background.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 
@@ -65,9 +65,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     await SettingsManger().init(context);
 
     Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
-
-    // await Provider.of<QuizState>(context, listen: false)
-    //     .init(context);
   }
 
   @override
