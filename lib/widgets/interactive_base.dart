@@ -21,8 +21,8 @@ class InteractiveBase extends StatelessWidget {
                 backgroundState: value.state,
               ),
             ),
-            HomeButton(),
-            child
+            child,
+            HomeButton()
           ],
         ),
       ),

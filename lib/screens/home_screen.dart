@@ -1,3 +1,4 @@
+import 'package:article_images/screens/challange_select_screen.dart';
 import 'package:article_images/screens/settings_screen.dart';
 import 'package:article_images/screens/play_screen.dart';
 import 'package:article_images/utils/article.dart';
@@ -62,7 +63,8 @@ class HomeScreen extends StatelessWidget {
                     child: ThemeButton(
                       color: Article.die.color(),
                       text: "Tägliche Challange",
-                      onPressed: () => {},
+                      onPressed: () => Navigator.of(context)
+                          .pushNamed(ChallangeSelectScreen.routeName),
                     ),
                   ),
                   SizedBox(height: 20),

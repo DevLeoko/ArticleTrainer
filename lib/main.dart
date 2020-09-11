@@ -1,6 +1,7 @@
-import 'package:article_images/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'screens/challange_select_screen.dart';
+import 'screens/settings_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/loading_screen.dart';
 import 'screens/play_screen.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => LoadingScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
           PlayScreen.routeName: (context) => PlayScreen(),
-          SettingsScreen.routeName: (context) => SettingsScreen()
+          SettingsScreen.routeName: (context) => SettingsScreen(),
+          ChallangeSelectScreen.routeName: (context) => ChallangeSelectScreen()
         });
   }
 }

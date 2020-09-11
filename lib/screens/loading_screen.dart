@@ -1,5 +1,6 @@
 import 'package:article_images/manager/score_manager.dart';
 import 'package:article_images/manager/settings_manager.dart';
+import 'package:article_images/utils/styles.dart';
 import 'package:article_images/utils/word_data_store.dart';
 import 'package:article_images/widgets/background.dart';
 import 'package:connectivity/connectivity.dart';
@@ -7,20 +8,6 @@ import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key key}) : super(key: key);
-
-  static const TextStyle myStyle = const TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.bold,
-    fontSize: 25,
-    letterSpacing: 1.3,
-    shadows: [
-      Shadow(
-        blurRadius: 4,
-        color: Colors.black38,
-        offset: Offset(2, 2),
-      )
-    ],
-  );
 
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
@@ -72,7 +59,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Widget child;
     if (errorTitle == null) {
       child = Loading(
-        myStyle: LoadingScreen.myStyle,
+        myStyle: boldWhiteShadowFont,
         text: "Lade Wörter...",
       );
     } else {
@@ -90,15 +77,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
             ),
             Text(
               errorTitle,
-              style: LoadingScreen.myStyle,
+              style: boldWhiteShadowFont,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: Text(
                 errorText,
                 textAlign: TextAlign.center,
-                style: LoadingScreen.myStyle
-                    .copyWith(fontSize: 14, color: Colors.grey.shade700),
+                style: boldWhiteShadowFont.copyWith(
+                    fontSize: 14, color: Colors.grey.shade700),
               ),
             ),
             RaisedButton(

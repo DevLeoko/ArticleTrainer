@@ -1,3 +1,4 @@
+import 'package:article_images/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -217,7 +218,7 @@ class BackgroundPainter extends CustomPainter {
     path3.lineTo(1, 0);
     path3.close();
     canvas.drawShadow(path3, Colors.black54, 5, true);
-    canvas.drawPath(path3, paint..color = Color(0xFF61AAFF));
+    canvas.drawPath(path3, paint..color = flatBlue);
   }
 
   @override

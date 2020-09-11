@@ -14,7 +14,8 @@ class HomeButton extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: Colors.blue.shade300,
           child: Icon(Icons.home),
-          onPressed: () => Navigator.of(context).pushNamed('/home'),
+          onPressed: () => Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home', (_) => false),
         ),
       ),
     );
