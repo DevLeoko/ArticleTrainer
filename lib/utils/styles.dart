@@ -18,3 +18,6 @@ final darkBlueThinFont = TextStyle(
     fontWeight: FontWeight.w300, fontSize: 20, color: Colors.blueGrey.shade700);
 
 const flatBlue = Color(0xFF61AAFF);
+const flatOrange = Color(0xFFFFC672);
+const flatGreen = Color(0xFF11CB72);
+const flatRed = Color(0xFFF64747);

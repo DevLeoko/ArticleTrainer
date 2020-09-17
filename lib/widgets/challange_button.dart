@@ -1,4 +1,4 @@
-import 'package:article_images/utils/article.dart';
+import 'package:article_images/manager/challange_manager.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +14,27 @@ class ChallangeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    final dayCode = (year - 2020) * 400 + month * 40 + day;
+    final dayCode = ChallangeManager.toDayCode(year, month, day);
+    final currentDayCode = ChallangeManager.toDayCodeFromDate(now);
+    final challangeData = ChallangeManager().getData(dayCode);
 
-    var available = now.year > year ||
+    final available = now.year > year ||
         (now.year == year && now.month > month) ||
         (now.year == year && now.month == month && now.day >= day);
 
+    final notToday = challangeData?.lastTry == currentDayCode;
+
     var color = Colors.white;
+
+    if (challangeData != null) {
+      final fails = challangeData.fails;
+      if (fails == 0)
+        color = flatGreen;
+      else if (fails <= 3)
+        color = flatOrange;
+      else
+        color = flatRed;
+    }
 
     if (now.year == year && now.month == month && now.day == day)
       color = flatBlue;
@@ -31,6 +45,7 @@ class ChallangeButton extends StatelessWidget {
         width: MonthView.boxWidth - 10,
         height: MonthView.boxWidth - 10,
         child: RaisedButton(
+          elevation: notToday ? 1 : 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),

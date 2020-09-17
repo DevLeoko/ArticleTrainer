@@ -173,7 +173,7 @@ class BackgroundPainter extends CustomPainter {
     path1.lineTo(0, 0);
     path1.close();
     canvas.drawShadow(path1, Colors.black54, 5, true);
-    canvas.drawPath(path1, paint..color = Color(0xFF11CB72));
+    canvas.drawPath(path1, paint..color = flatGreen);
 
     RelativeFlowPath path2 = RelativeFlowPath(width, height, 0, 0.55);
     path2.flowTo(
@@ -195,7 +195,7 @@ class BackgroundPainter extends CustomPainter {
     path2.lineTo(0, 1);
     path2.close();
     canvas.drawShadow(path2, Colors.black54, 5, true);
-    canvas.drawPath(path2, paint..color = Color(0xFFFFC672));
+    canvas.drawPath(path2, paint..color = flatOrange);
 
     RelativeFlowPath path3 = RelativeFlowPath(width, height, 0.9, 0);
     path3.flowTo(
