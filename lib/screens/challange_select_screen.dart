@@ -41,12 +41,15 @@ class ChallangeSelectScreen extends StatelessWidget {
                 height: 350,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
+                  itemCount: 1,
                   itemBuilder: (context, indexx) {
                     return SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: PageView.builder(
                         controller: PageController(
-                            viewportFraction: 0.8, initialPage: currentIndex),
+                          viewportFraction: 0.8,
+                          initialPage: currentIndex,
+                        ),
                         itemBuilder: (context, index) {
                           return MonthView(
                             month: (index + startMonth - 1) % 12 + 1,

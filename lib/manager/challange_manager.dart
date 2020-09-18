@@ -5,6 +5,8 @@ import 'package:article_images/utils/word.dart';
 import 'package:article_images/utils/word_data_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:http/http.dart' as http;
+
 class ChallangeManager {
   static final _instance = ChallangeManager._();
   static const String prefix = "challange_";
@@ -18,8 +20,6 @@ class ChallangeManager {
   factory ChallangeManager() {
     return _instance;
   }
-
-  get http => null;
 
   init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -54,8 +54,10 @@ class ChallangeManager {
   }
 
   Future<List<Word>> startChallange(int dayCode) async {
-    final data = await http.get(
-        "https://us-central1-app-2b1a.cloudfunctions.net/main?challange=true&daycode=$dayCode");
+    final data = await http
+        .get(
+            "https://us-central1-app-2b1a.cloudfunctions.net/main?challange=true&daycode=$dayCode")
+        .timeout(Duration(seconds: 6));
 
     if (data.statusCode != 200) {
       throw Exception("Failed to load challange!");
@@ -78,6 +80,14 @@ class ChallangeManager {
         .words
         .where((element) => words.contains(element.word))
         .toList();
+  }
+
+  completeChallange(int dayCode, int fails) async {
+    if (_challangeData[dayCode].fails == -1 ||
+        _challangeData[dayCode].fails > fails) {
+      _challangeData[dayCode].fails = fails;
+      await _save(dayCode);
+    }
   }
 
   ChallangeData getData(int dayCode) {

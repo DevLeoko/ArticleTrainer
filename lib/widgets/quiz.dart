@@ -1,4 +1,5 @@
 import 'package:article_images/screens/home_screen.dart';
+import 'package:article_images/utils/styles.dart';
 import 'package:article_images/utils/word_data_store.dart';
 import 'package:article_images/widgets/background.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,14 +11,17 @@ import 'package:article_images/widgets/word_view.dart';
 import 'package:article_images/widgets/theme_button.dart';
 
 class Quiz extends StatefulWidget {
-  static const routeName = '/quiz';
   final Word Function(bool) wordSupplier;
   final Function(bool) guessCallback;
+  final Function() doneCallback;
+  final String heroTag;
 
   const Quiz({
     Key key,
     @required this.wordSupplier,
     @required this.guessCallback,
+    this.doneCallback,
+    this.heroTag = "WordView",
   }) : super(key: key);
 
   @override
@@ -88,14 +92,8 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double size;
-    var media = MediaQuery.of(context);
-    if (media.orientation == Orientation.portrait)
-      size = MediaQuery.of(context).size.width * 0.65;
-    else
-      size = MediaQuery.of(context).size.height * 0.6;
-
-    var isPortrait = media.orientation == Orientation.portrait;
+    double size = getQuizSize(context);
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Flex(
       direction: isPortrait ? Axis.vertical : Axis.horizontal,
@@ -128,33 +126,21 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
                       ),
                   ],
                 )
-              : nextWord != null
-                  ? Container(
-                      height: size / 3.5,
-                      width: size / 3.5,
-                      child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                          ),
-                          color: Colors.white,
-                          child: Icon(Icons.arrow_forward),
-                          onPressed: () {
-                            _nextWord();
-                          }),
-                    )
-                  : Container(
-                      height: size / 3.5,
-                      width: size / 3.5,
-                      child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                          ),
-                          color: Colors.white,
-                          child: Icon(Icons.check),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          }),
+              : Container(
+                  height: size / 3.5,
+                  width: size / 3.5,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
+                    color: Colors.white,
+                    child: Icon(
+                        nextWord != null ? Icons.arrow_forward : Icons.check),
+                    onPressed: nextWord != null
+                        ? _nextWord
+                        : widget.doneCallback ?? () {},
+                  ),
+                ),
         ),
         SizedBox(height: 40, width: 40),
         Container(
@@ -170,7 +156,7 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
           width: size,
           height: size,
           child: Hero(
-            tag: "WordView",
+            tag: widget.heroTag,
             flightShuttleBuilder: HomeScreen.roundedFlightShuttleBuild,
             child: WordView(
               size: size,

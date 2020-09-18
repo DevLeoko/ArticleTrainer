@@ -1,3 +1,4 @@
+import 'package:article_images/manager/challange_manager.dart';
 import 'package:article_images/manager/score_manager.dart';
 import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/utils/styles.dart';
@@ -36,6 +37,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       return;
     }
 
+    await SettingsManger().init(context);
     await ScoreManager().init();
 
     try {
@@ -49,7 +51,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       return;
     }
 
-    await SettingsManger().init(context);
+    ChallangeManager().init();
 
     Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
   }

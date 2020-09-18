@@ -3,11 +3,14 @@ import 'package:provider/provider.dart';
 
 import 'background.dart';
 import 'home_button.dart';
+import 'exit_button.dart';
 
 class InteractiveBase extends StatelessWidget {
   final Widget child;
+  final bool closeButton;
 
-  const InteractiveBase({Key key, this.child}) : super(key: key);
+  const InteractiveBase({Key key, this.child, this.closeButton = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class InteractiveBase extends StatelessWidget {
               ),
             ),
             child,
-            HomeButton()
+            closeButton ? ExitButton() : HomeButton()
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:article_images/screens/settings_screen.dart';
-import 'package:article_images/utils/privacy_dialog_builder.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ class SettingsManger {
 
   bool requestRating;
   bool hideStreaks;
+  bool askForAnalytics = false;
 
   init(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -26,12 +26,7 @@ class SettingsManger {
 
     if (!prefs.containsKey(SettingsScreen.use_analytics)) {
       FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: buildPrivacyDialog,
-      );
+      askForAnalytics = true;
     }
   }
 }
