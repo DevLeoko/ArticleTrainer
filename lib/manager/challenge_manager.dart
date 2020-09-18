@@ -1,23 +1,23 @@
 import 'dart:convert';
 
-import 'package:article_images/utils/challange_data.dart';
+import 'package:article_images/utils/challenge_data.dart';
 import 'package:article_images/utils/word.dart';
 import 'package:article_images/utils/word_data_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
 
-class ChallangeManager {
-  static final _instance = ChallangeManager._();
-  static const String prefix = "challange_";
-  static const int challangeSize = 15;
-  ChallangeManager._();
+class ChallengeManager {
+  static final _instance = ChallengeManager._();
+  static const String prefix = "challenge_";
+  static const int challengeSize = 15;
+  ChallengeManager._();
 
-  final Map<int, ChallangeData> _challangeData = {};
+  final Map<int, ChallengeData> _challengeData = {};
 
   SharedPreferences _preferences;
 
-  factory ChallangeManager() {
+  factory ChallengeManager() {
     return _instance;
   }
 
@@ -31,16 +31,16 @@ class ChallangeManager {
       int val = _preferences.getInt(str);
       var dayCode = int.parse(str.split("_")[1]);
       if (str.split("_")[2] == "fails") {
-        if (_challangeData[dayCode] != null) {
-          _challangeData[dayCode].fails = val;
+        if (_challengeData[dayCode] != null) {
+          _challengeData[dayCode].fails = val;
         } else {
-          _challangeData[dayCode] = ChallangeData(fails: val);
+          _challengeData[dayCode] = ChallengeData(fails: val);
         }
       } else {
-        if (_challangeData[dayCode] != null) {
-          _challangeData[dayCode].lastTry = val;
+        if (_challengeData[dayCode] != null) {
+          _challengeData[dayCode].lastTry = val;
         } else {
-          _challangeData[dayCode] = ChallangeData(lastTry: val);
+          _challengeData[dayCode] = ChallengeData(lastTry: val);
         }
       }
     });
@@ -48,30 +48,30 @@ class ChallangeManager {
 
   _save(int dayCode) async {
     await _preferences.setInt(
-        "$prefix$dayCode\_fails", _challangeData[dayCode].fails);
+        "$prefix$dayCode\_fails", _challengeData[dayCode].fails);
     await _preferences.setInt(
-        "$prefix$dayCode\_lastTry", _challangeData[dayCode].lastTry);
+        "$prefix$dayCode\_lastTry", _challengeData[dayCode].lastTry);
   }
 
-  Future<List<Word>> startChallange(int dayCode) async {
+  Future<List<Word>> startChallenge(int dayCode) async {
     final data = await http
         .get(
-            "https://us-central1-app-2b1a.cloudfunctions.net/main?challange=true&daycode=$dayCode")
+            "https://us-central1-app-2b1a.cloudfunctions.net/main?challenge=true&daycode=$dayCode")
         .timeout(Duration(seconds: 6));
 
     if (data.statusCode != 200) {
-      throw Exception("Failed to load challange!");
+      throw Exception("Failed to load challenge!");
     }
 
     final words = List<String>.from(jsonDecode(data.body));
 
     final currentDayCode = toDayCodeFromDate(DateTime.now());
 
-    if (_challangeData[dayCode] == null) {
-      _challangeData[dayCode] =
-          ChallangeData(fails: 15, lastTry: currentDayCode);
+    if (_challengeData[dayCode] == null) {
+      _challengeData[dayCode] =
+          ChallengeData(fails: 15, lastTry: currentDayCode);
     } else {
-      _challangeData[dayCode].lastTry = currentDayCode;
+      _challengeData[dayCode].lastTry = currentDayCode;
     }
 
     await _save(dayCode);
@@ -82,16 +82,16 @@ class ChallangeManager {
         .toList();
   }
 
-  completeChallange(int dayCode, int fails) async {
-    if (_challangeData[dayCode].fails == -1 ||
-        _challangeData[dayCode].fails > fails) {
-      _challangeData[dayCode].fails = fails;
+  completeChallenge(int dayCode, int fails) async {
+    if (_challengeData[dayCode].fails == -1 ||
+        _challengeData[dayCode].fails > fails) {
+      _challengeData[dayCode].fails = fails;
       await _save(dayCode);
     }
   }
 
-  ChallangeData getData(int dayCode) {
-    return _challangeData[dayCode];
+  ChallengeData getData(int dayCode) {
+    return _challengeData[dayCode];
   }
 
   static toDayCodeFromDate(DateTime date) {

@@ -1,7 +1,7 @@
-import 'package:article_images/screens/challange_play_screen.dart';
+import 'package:article_images/screens/challenge_play_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/challange_select_screen.dart';
+import 'screens/challenge_select_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/loading_screen.dart';
@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: (settings) {
-        if (settings.name == ChallangePlayScreen.routeName) {
+        if (settings.name == ChallengePlayScreen.routeName) {
           return MaterialPageRoute<int>(
             builder: (context) {
-              return ChallangePlayScreen(
+              return ChallengePlayScreen(
                 words: (settings.arguments as Map)['words'],
                 heroTag: (settings.arguments as Map)['tag'],
               );
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.routeName: (ctx) => HomeScreen(),
           PlayScreen.routeName: (ctx) => PlayScreen(),
           SettingsScreen.routeName: (ctx) => SettingsScreen(),
-          ChallangeSelectScreen.routeName: (ctx) => ChallangeSelectScreen()
+          ChallengeSelectScreen.routeName: (ctx) => ChallengeSelectScreen()
         };
         WidgetBuilder builder = routes[settings.name];
         return MaterialPageRoute(builder: (ctx) => builder(ctx));

@@ -1,4 +1,4 @@
-import 'package:article_images/widgets/challange_button.dart';
+import 'package:article_images/widgets/challenge_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:article_images/utils/styles.dart';
@@ -49,7 +49,7 @@ class MonthView extends StatelessWidget {
                   children: [
                     for (var weekday = 0; weekday < 7; weekday++)
                       if (row * 7 + weekday >= startOffset)
-                        ChallangeButton(
+                        ChallengeButton(
                           day: row * 7 + weekday + 1 - startOffset,
                           month: month,
                           year: year,

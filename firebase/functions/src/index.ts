@@ -8,17 +8,17 @@ import data from "./assets/app_data.json";
 export const main = functions.https.onRequest((request, response) => {
   if (request.query.version){
     response.send({ version: 6 });
-  } else if(request.query.challange) {
+  } else if(request.query.challenge) {
     const dayCode: number = request.query.daycode;
     const rand = new SeededRandomUtilities(dayCode.toString());
 
-    const challangeWords: string[] = [];
+    const challengeWords: string[] = [];
 
     for (let i = 0; i < 15; i++) {
-      challangeWords.push(data[rand.getRandomIntegar(data.length)].word)
+      challengeWords.push(data[rand.getRandomIntegar(data.length)].word)
     }
 
-    response.send(challangeWords);
+    response.send(challengeWords);
   }
   else {
     response.send(data);

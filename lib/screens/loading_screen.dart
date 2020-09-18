@@ -1,4 +1,4 @@
-import 'package:article_images/manager/challange_manager.dart';
+import 'package:article_images/manager/challenge_manager.dart';
 import 'package:article_images/manager/score_manager.dart';
 import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/utils/styles.dart';
@@ -51,7 +51,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       return;
     }
 
-    ChallangeManager().init();
+    ChallengeManager().init();
 
     Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
   }

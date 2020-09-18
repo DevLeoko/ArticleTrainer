@@ -1,23 +1,23 @@
-import 'package:article_images/manager/challange_manager.dart';
+import 'package:article_images/manager/challenge_manager.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:article_images/utils/word.dart';
 import 'package:article_images/widgets/interactive_base.dart';
 import 'package:article_images/widgets/quiz.dart';
 import 'package:flutter/material.dart';
 
-class ChallangePlayScreen extends StatefulWidget {
-  static const routeName = '/challange/play';
+class ChallengePlayScreen extends StatefulWidget {
+  static const routeName = '/challenge/play';
   final List<Word> words;
   final String heroTag;
 
-  ChallangePlayScreen({Key key, @required this.words, @required this.heroTag})
+  ChallengePlayScreen({Key key, @required this.words, @required this.heroTag})
       : super(key: key);
 
   @override
-  _ChallangePlayScreenState createState() => _ChallangePlayScreenState();
+  _ChallengePlayScreenState createState() => _ChallengePlayScreenState();
 }
 
-class _ChallangePlayScreenState extends State<ChallangePlayScreen> {
+class _ChallengePlayScreenState extends State<ChallengePlayScreen> {
   int _index = 0;
   List<bool> _correct = [];
 
@@ -36,7 +36,7 @@ class _ChallangePlayScreenState extends State<ChallangePlayScreen> {
   }
 
   Future<bool> _confirmExit() async {
-    if (_correct.length == ChallangeManager.challangeSize) {
+    if (_correct.length == ChallengeManager.challengeSize) {
       _done();
       return false;
     }
@@ -47,7 +47,7 @@ class _ChallangePlayScreenState extends State<ChallangePlayScreen> {
           return AlertDialog(
             title: Text("Sicher, dass du abbrechen willst?"),
             content: Text(
-                'Wenn du die Challange frühzeitig verlässt, wird sie so gewertet, wie wenn du alle Artikel falsch geraten hättest.'),
+                'Wenn du die Challenge frühzeitig verlässt, wird sie so gewertet, wie wenn du alle Artikel falsch geraten hättest.'),
             actions: <Widget>[
               FlatButton(
                 child: Text('Bleiben'),
@@ -70,7 +70,7 @@ class _ChallangePlayScreenState extends State<ChallangePlayScreen> {
   Widget build(BuildContext context) {
     final List<Widget> statusBar = [];
 
-    for (var i = 0; i < ChallangeManager.challangeSize; i++) {
+    for (var i = 0; i < ChallengeManager.challengeSize; i++) {
       var barColor = Colors.grey.shade200;
 
       if (_correct.length > i) {

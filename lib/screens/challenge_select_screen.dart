@@ -3,12 +3,12 @@ import 'package:article_images/widgets/interactive_base.dart';
 import 'package:article_images/widgets/month_view.dart';
 import 'package:flutter/material.dart';
 
-class ChallangeSelectScreen extends StatelessWidget {
-  static const routeName = '/challange/select';
-  static const startMonth = 5;
-  static const startYear = 2019;
+class ChallengeSelectScreen extends StatelessWidget {
+  static const routeName = '/challenge/select';
+  static const startMonth = 9;
+  static const startYear = 2020;
 
-  const ChallangeSelectScreen({Key key}) : super(key: key);
+  const ChallengeSelectScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,39 +1,37 @@
-import 'dart:math';
-
-import 'package:article_images/manager/challange_manager.dart';
-import 'package:article_images/screens/challange_play_screen.dart';
+import 'package:article_images/manager/challenge_manager.dart';
+import 'package:article_images/screens/challenge_play_screen.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:article_images/utils/word.dart';
 import 'package:flutter/material.dart';
 
 import 'package:article_images/widgets/month_view.dart';
 
-class ChallangeButton extends StatefulWidget {
+class ChallengeButton extends StatefulWidget {
   static const String heroTagPrefx = "chal_btn_tag_";
   final int year, month, day;
 
-  const ChallangeButton(
+  const ChallengeButton(
       {Key key, @required this.year, @required this.month, @required this.day})
       : super(key: key);
 
   @override
-  _ChallangeButtonState createState() => _ChallangeButtonState();
+  _ChallengeButtonState createState() => _ChallengeButtonState();
 }
 
-class _ChallangeButtonState extends State<ChallangeButton> {
+class _ChallengeButtonState extends State<ChallengeButton> {
   bool loading = false;
 
-  _startChallange() async {
+  _startChallenge() async {
     setState(() {
       loading = true;
     });
 
     final dayCode =
-        ChallangeManager.toDayCode(widget.year, widget.month, widget.day);
+        ChallengeManager.toDayCode(widget.year, widget.month, widget.day);
 
     List<Word> words;
     try {
-      words = await ChallangeManager().startChallange(dayCode);
+      words = await ChallengeManager().startChallenge(dayCode);
       await words[0].cachedImage;
     } catch (exc) {
       showDialog(
@@ -41,7 +39,7 @@ class _ChallangeButtonState extends State<ChallangeButton> {
         child: AlertDialog(
           title: Text("Fehler 😔"),
           content: Text(
-              "Die Challange konnte leider nicht gelanden werden. Überprüfe deine Internetverbindung und versuche es sonst später erneut."),
+              "Die Challenge konnte leider nicht gelanden werden. Überprüfe deine Internetverbindung und versuche es sonst später erneut."),
           actions: [
             FlatButton(
               child: Text("Okay"),
@@ -59,13 +57,13 @@ class _ChallangeButtonState extends State<ChallangeButton> {
     }
 
     int fails = await Navigator.of(context)
-        .pushNamed(ChallangePlayScreen.routeName, arguments: {
+        .pushNamed(ChallengePlayScreen.routeName, arguments: {
       'words': words,
-      'tag': "${ChallangeButton.heroTagPrefx}$dayCode"
+      'tag': "${ChallengeButton.heroTagPrefx}$dayCode"
     });
 
     if (fails != null) {
-      await ChallangeManager().completeChallange(dayCode, fails);
+      await ChallengeManager().completeChallenge(dayCode, fails);
     }
 
     setState(() {
@@ -77,9 +75,9 @@ class _ChallangeButtonState extends State<ChallangeButton> {
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final dayCode =
-        ChallangeManager.toDayCode(widget.year, widget.month, widget.day);
-    final currentDayCode = ChallangeManager.toDayCodeFromDate(now);
-    final challangeData = ChallangeManager().getData(dayCode);
+        ChallengeManager.toDayCode(widget.year, widget.month, widget.day);
+    final currentDayCode = ChallengeManager.toDayCodeFromDate(now);
+    final challengeData = ChallengeManager().getData(dayCode);
 
     final available = now.year > widget.year ||
         (now.year == widget.year && now.month > widget.month) ||
@@ -87,7 +85,7 @@ class _ChallangeButtonState extends State<ChallangeButton> {
             now.month == widget.month &&
             now.day >= widget.day);
 
-    final notToday = challangeData?.lastTry == currentDayCode;
+    final notToday = challengeData?.lastTry == currentDayCode;
 
     var color = Colors.white;
 
@@ -95,8 +93,8 @@ class _ChallangeButtonState extends State<ChallangeButton> {
         now.month == widget.month &&
         now.day == widget.day) color = flatBlue;
 
-    if (challangeData != null) {
-      final fails = challangeData.fails;
+    if (challengeData != null) {
+      final fails = challengeData.fails;
       if (fails == 0)
         color = flatGreen;
       else if (fails <= 3)
@@ -108,7 +106,7 @@ class _ChallangeButtonState extends State<ChallangeButton> {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Hero(
-        tag: "${ChallangeButton.heroTagPrefx}$dayCode",
+        tag: "${ChallengeButton.heroTagPrefx}$dayCode",
         child: Container(
           width: MonthView.boxWidth - 10,
           height: MonthView.boxWidth - 10,
@@ -135,9 +133,9 @@ class _ChallangeButtonState extends State<ChallangeButton> {
                           context: context,
                           child: AlertDialog(
                             title: Text(
-                                "Du hast diese Challange heute schon versucht!"),
+                                "Du hast diese Challenge heute schon versucht!"),
                             content: Text(
-                                "Jede Challange kann nur einmal am Tag probiert werden. Probiere es morgen dann noch nochmal 👍"),
+                                "Jede Challenge kann nur einmal am Tag probiert werden. Probiere es morgen dann nochmal 👍"),
                             actions: [
                               FlatButton(
                                 child: Text("Okay!"),
@@ -147,7 +145,7 @@ class _ChallangeButtonState extends State<ChallangeButton> {
                           ),
                         );
                       } else {
-                        _startChallange();
+                        _startChallenge();
                       }
                     }
                   }

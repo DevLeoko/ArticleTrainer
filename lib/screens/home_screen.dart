@@ -1,12 +1,12 @@
-import 'package:article_images/manager/challange_manager.dart';
+import 'package:article_images/manager/challenge_manager.dart';
 import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/screens/challange_select_screen.dart';
+import 'package:article_images/screens/challenge_select_screen.dart';
 import 'package:article_images/screens/settings_screen.dart';
 import 'package:article_images/screens/play_screen.dart';
 import 'package:article_images/utils/article.dart';
 import 'package:article_images/utils/privacy_dialog_builder.dart';
 import 'package:article_images/widgets/background.dart';
-import 'package:article_images/widgets/challange_button.dart';
+import 'package:article_images/widgets/challenge_button.dart';
 import 'package:article_images/widgets/theme_button.dart';
 import 'package:flutter/material.dart';
 
@@ -84,14 +84,14 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 20),
                       Hero(
                         tag:
-                            "${ChallangeButton.heroTagPrefx}${ChallangeManager.toDayCodeFromDate(DateTime.now())}",
+                            "${ChallengeButton.heroTagPrefx}${ChallengeManager.toDayCodeFromDate(DateTime.now())}",
                         child: Container(
                           height: 60,
                           child: ThemeButton(
                             color: Article.die.color(),
-                            text: "Tägliche Challange",
+                            text: "Tägliche Challenge",
                             onPressed: () => Navigator.of(context)
-                                .pushNamed(ChallangeSelectScreen.routeName),
+                                .pushNamed(ChallengeSelectScreen.routeName),
                           ),
                         ),
                       ),
