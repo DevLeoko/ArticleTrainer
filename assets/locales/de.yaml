@@ -1,0 +1,75 @@
+loading:
+  loading: "Lade Wörter..."
+  error: "Fehler!"
+  errorText: "Beim Laden der Wörter ist ein Fehler aufgetreten! Überprüfe deine Internetverbindung und probiere es später erneut."
+  noInternet: "Kein Internet!"
+  noInternetText: "Es ist eine Internetverbindung für disese App erfoderlich!"
+  retry: "Erneut versuchen"
+
+home:
+  begin: "Anfangen"
+  dailyChallange: "Tägliche Challenge"
+  settings: "Einstellungen"
+
+settings:
+  title: "Einstellungen"
+  showStreaks: "Zeige Streaks"
+  sendAnalytics: "Sende Analytics"
+  aboutDev: "Entwickler"
+  rateUsTitle: "Dir gefällt die App?"
+  rateUsAction: "SAG UNS DEINE MEINUNG"
+  privacy: "Datenschutz"
+  privacyLink: "http://skamps.eu/artikel-trainer/datenschutz.html"
+  imprint: "Impressum"
+  imprintLink: "http://skamps.eu/artikel-trainer/impressum.html"
+  appInfo: "App Info"
+  appTitle: "Der Die Das - Artikel mit Bildern lernen"
+
+challenge:
+  days: "M D M D F S S"
+  months: "Januar Februar März April Mai Juni Juli August September Oktober November Dezember"
+  error: "Fehler 😔"
+  errorText: "Die Challenge konnte leider nicht gelanden werden. Überprüfe deine Internetverbindung und versuche es sonst später erneut."
+  errorAck: "Okay"
+  onceADay: "Du hast diese Challenge heute schon versucht!"
+  onceADayText: "Jede Challenge kann nur einmal am Tag probiert werden. Probiere es morgen dann nochmal 👍"
+  onceADayAck: "Okay!"
+  exitConfirm:
+    title: "Sicher, dass du abbrechen willst?"
+    text: "Wenn du die Challenge frühzeitig verlässt, wird sie so gewertet, wie wenn du alle Artikel falsch geraten hättest."
+    stay: "Bleiben"
+    exit: "Ja, verlassen"
+
+quiz:
+  imageCredit:
+    t1: "Bild: "
+    t2: " auf "
+
+score:
+  countParticle: "er"
+  streak: "Streak"
+  today: "heute"
+  month: "diesen Monat"
+  allTime: "insgesamt"
+
+rating:
+  title: "STARKE LEISTUNG"
+  text1: "Du wirst immer besser!"
+  text2: "Wenn es dir gerade passt, würde es mich freuen deine Meinung zu dieser App zu hören."
+  text3: "Wie würdest du die App bist jetzt bewerten?"
+  goodRating: "Das freut mich zu hören! Wärst du bereit deine Meinung mit der Welt zu teilen und uns im Play-Store zu bewerten?"
+  badRating: "Schade, lass uns was daran ändern! Schreib mir gerne eine eMail was dir nicht gefällt oder was wir noch besser machen können."
+  store: "Im Store bewerten"
+  mail: "eMail schreiben"
+  exit: "Abbrechen"
+
+privacy:
+  title: "Hilf dabei diese App zu verbessern"
+  text: >- 
+    Um die App zu verbessern, würden wir gerne Statistiken über dein Nutzerverhalten erfassen.
+    So verstehen wir besser, was unseren Nutzern wichtig ist und was wir noch verbessern können.
+    Diese Entscheidung kannst du jederzeit in den Einstellungen ändern.
+  button: "Datenschutzerklärung"
+  link: "http://skamps.eu/artikel-trainer/datenschutz.html"
+  allow: "Einverstanden"
+  deny: "Nein"

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:article_images/utils/article.dart';
@@ -103,7 +104,7 @@ class WordView extends StatelessWidget {
             child: Wrap(
               children: <Widget>[
                 Text(
-                  "Bild: ",
+                  FlutterI18n.translate(context, "quiz.imageCredit.t1"),
                   style: TextStyle(color: Colors.white70),
                 ),
                 GestureDetector(
@@ -116,7 +117,7 @@ class WordView extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  " auf ",
+                  FlutterI18n.translate(context, "quiz.imageCredit.t2"),
                   style: TextStyle(color: Colors.white70),
                 ),
                 GestureDetector(

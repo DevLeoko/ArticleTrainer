@@ -2,6 +2,7 @@ import 'package:article_images/utils/styles.dart';
 import 'package:article_images/widgets/interactive_base.dart';
 import 'package:article_images/widgets/month_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class ChallengeSelectScreen extends StatelessWidget {
   static const routeName = '/challenge/select';
@@ -26,7 +27,8 @@ class ChallengeSelectScreen extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  for (var w in ["M", "D", "M", "D", "F", "S", "S"])
+                  for (var w in FlutterI18n.translate(context, "challenge.days")
+                      .split(" "))
                     Container(
                       width: MonthView.boxWidth,
                       alignment: Alignment.center,

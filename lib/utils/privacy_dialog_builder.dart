@@ -1,30 +1,27 @@
 import 'package:article_images/screens/settings_screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Widget buildPrivacyDialog(context) {
   var loading = false;
   return AlertDialog(
-    title: Text("Hilf dabei diese App zu verbessern"),
+    title: I18nText("privacy.title"),
     content: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("""
-Um die App zu verbessern, würden wir gerne Statistiken über dein Nutzerverhalten erfassen.
-So verstehen wir besser, was unseren Nutzern wichtig ist und was wir noch verbessern können.
-Diese Entscheidung kannst du jederzeit in den Einstellungen ändern."""),
+        I18nText("privacy.text"),
         SizedBox(height: 10),
         GestureDetector(
           child: Text(
-            "Datenschutzerklärung",
+            FlutterI18n.translate(context, "privacy.button"),
             style: TextStyle(
                 decoration: TextDecoration.underline, color: Colors.blueGrey),
           ),
-          onTap: () =>
-              launch("http://skamps.eu/artikel-trainer/datenschutz.html"),
+          onTap: () => launch(FlutterI18n.translate(context, "privacy.link")),
         )
       ],
     ),
@@ -39,7 +36,7 @@ Diese Entscheidung kannst du jederzeit in den Einstellungen ändern."""),
             Navigator.pop(context);
           },
           child: !loading
-              ? Text("Nein")
+              ? I18nText("privacy.deny")
               : Container(
                   height: 20,
                   width: 20,
@@ -58,7 +55,7 @@ Diese Entscheidung kannst du jederzeit in den Einstellungen ändern."""),
             Navigator.pop(context);
           },
           child: !loading
-              ? Text("Einverstanden")
+              ? I18nText("privacy.allow")
               : Container(
                   height: 20,
                   width: 20,

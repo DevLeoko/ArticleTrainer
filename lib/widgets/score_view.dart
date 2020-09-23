@@ -1,5 +1,6 @@
 import 'package:article_images/manager/score_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:tuple/tuple.dart';
 
 class ScoreView extends StatefulWidget {
@@ -53,7 +54,7 @@ class _ScoreViewState extends State<ScoreView> {
               child: Text(
                 (widget.red ? score.previousStreak : score.currentStreak)
                         .toString() +
-                    "er",
+                    FlutterI18n.translate(context, "score.countParticle"),
                 style: TextStyle(
                     color: Colors.green.shade400,
                     fontSize: 25,
@@ -65,7 +66,7 @@ class _ScoreViewState extends State<ScoreView> {
               width: 5,
             ),
             Text(
-              "Streak",
+              FlutterI18n.translate(context, "score.streak"),
               style: TextStyle(
                   color: (widget.red
                       ? Colors.redAccent
@@ -81,9 +82,12 @@ class _ScoreViewState extends State<ScoreView> {
         if (ratio <= 0.6 || media.orientation == Orientation.landscape)
           for (final stat in [
             // Tuple2("jetzt", state.item2.currentStreak),
-            Tuple2("insgesammt", score.allStreak),
-            Tuple2("diesen Monat", score.montlyStreak),
-            Tuple2("heute", score.dailyStreak),
+            Tuple2(FlutterI18n.translate(context, "score.allTime"),
+                score.allStreak),
+            Tuple2(FlutterI18n.translate(context, "score.month"),
+                score.montlyStreak),
+            Tuple2(FlutterI18n.translate(context, "score.today"),
+                score.dailyStreak),
           ])
             Row(
               mainAxisSize: MainAxisSize.min,

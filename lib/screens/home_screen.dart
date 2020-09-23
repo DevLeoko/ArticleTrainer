@@ -9,6 +9,7 @@ import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/challenge_button.dart';
 import 'package:article_images/widgets/theme_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -75,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                           height: 60,
                           child: ThemeButton(
                             color: Article.der.color(),
-                            text: "Anfangen",
+                            text: FlutterI18n.translate(context, "home.begin"),
                             onPressed: () => Navigator.of(context)
                                 .pushNamed(PlayScreen.routeName),
                           ),
@@ -89,7 +90,8 @@ class HomeScreen extends StatelessWidget {
                           height: 60,
                           child: ThemeButton(
                             color: Article.die.color(),
-                            text: "Tägliche Challenge",
+                            text: FlutterI18n.translate(
+                                context, "home.dailyChallange"),
                             onPressed: () => Navigator.of(context)
                                 .pushNamed(ChallengeSelectScreen.routeName),
                           ),
@@ -102,7 +104,8 @@ class HomeScreen extends StatelessWidget {
                           height: 60,
                           child: ThemeButton(
                             color: Article.das.color(),
-                            text: "Einstellungen",
+                            text:
+                                FlutterI18n.translate(context, "home.settings"),
                             onPressed: () => Navigator.of(context)
                                 .pushNamed(SettingsScreen.routeName),
                           ),

@@ -1,6 +1,7 @@
 import 'package:article_images/screens/settings_screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,44 +13,41 @@ Widget buildRatingDialog(context) {
   return AlertDialog(
     actions: <Widget>[
       FlatButton(
-          onPressed: () {
-            Navigator.pop(context);
-            FirebaseAnalytics().logEvent(name: "rating", parameters: {
-              'value': rating,
-              'time_spent': DateTime.now().difference(time).inSeconds
-            });
-          },
-          child: Text("Abbrechen"))
+        onPressed: () {
+          Navigator.pop(context);
+          FirebaseAnalytics().logEvent(name: "rating", parameters: {
+            'value': rating,
+            'time_spent': DateTime.now().difference(time).inSeconds
+          });
+        },
+        child: I18nText("rating.exit"),
+      )
     ],
     content: SingleChildScrollView(
       child: StatefulBuilder(builder: (context, setState) {
         String text;
 
         if (rating != null) {
-          if (rating <= 3)
-            text =
-                "Schade, lass uns was daran ändern! Schreib mir gerne eine eMail was dir nicht gefällt oder was wir noch besser machen können.";
-          else
-            text =
-                "Das freut mich zu hören! Wärst du bereit deine Meinung mit der Welt zu teilen und uns im Play-Store zu bewerten?";
+          text = FlutterI18n.translate(
+              context, "rating.${rating <= 3 ? 'bad' : 'good'}Rating");
         }
 
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              "STARKE LEISTUNG",
+              FlutterI18n.translate(context, "rating.title"),
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
             Text(
-              "Du wirst immer besser!",
+              FlutterI18n.translate(context, "rating.text1"),
               style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "Wenn es dir gerade passt, würde es mich freuen deine Meinung zu dieser App zu hören.",
+              FlutterI18n.translate(context, "rating.text2"),
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 15),
             ),
@@ -57,7 +55,7 @@ Widget buildRatingDialog(context) {
               height: 15,
             ),
             Text(
-              "Wie würdest du die App bist jetzt bewerten?",
+              FlutterI18n.translate(context, "rating.text3"),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 15,
@@ -112,9 +110,9 @@ Widget buildRatingDialog(context) {
                                     SizedBox(
                                       width: 4,
                                     ),
-                                    Text(rating <= 3
-                                        ? "eMail schreiben"
-                                        : "Im Store bewerten"),
+                                    I18nText(rating <= 3
+                                        ? "rating.mail"
+                                        : "rating.store"),
                                   ],
                                 ))
                           ],

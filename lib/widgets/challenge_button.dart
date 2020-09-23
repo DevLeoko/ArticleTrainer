@@ -5,6 +5,7 @@ import 'package:article_images/utils/word.dart';
 import 'package:flutter/material.dart';
 
 import 'package:article_images/widgets/month_view.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class ChallengeButton extends StatefulWidget {
   static const String heroTagPrefx = "chal_btn_tag_";
@@ -37,12 +38,11 @@ class _ChallengeButtonState extends State<ChallengeButton> {
       showDialog(
         context: context,
         child: AlertDialog(
-          title: Text("Fehler 😔"),
-          content: Text(
-              "Die Challenge konnte leider nicht gelanden werden. Überprüfe deine Internetverbindung und versuche es sonst später erneut."),
+          title: I18nText("challenge.error"),
+          content: I18nText("challenge.errorText"),
           actions: [
             FlatButton(
-              child: Text("Okay"),
+              child: I18nText("challenge.errorAck"),
               onPressed: () => Navigator.of(context).pop(),
             )
           ],
@@ -132,13 +132,11 @@ class _ChallengeButtonState extends State<ChallengeButton> {
                         showDialog(
                           context: context,
                           child: AlertDialog(
-                            title: Text(
-                                "Du hast diese Challenge heute schon versucht!"),
-                            content: Text(
-                                "Jede Challenge kann nur einmal am Tag probiert werden. Probiere es morgen dann nochmal 👍"),
+                            title: I18nText("challenge.onceADay"),
+                            content: I18nText("challenge.onceADayText"),
                             actions: [
                               FlatButton(
-                                child: Text("Okay!"),
+                                child: I18nText("challenge.onceADayAck"),
                                 onPressed: () => Navigator.of(context).pop(),
                               )
                             ],

@@ -1,5 +1,9 @@
 import 'package:article_images/screens/challenge_play_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_i18n/loaders/decoders/yaml_decode_strategy.dart';
+import 'package:flutter_i18n/loaders/file_translation_loader.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'screens/challenge_select_screen.dart';
 import 'screens/settings_screen.dart';
@@ -23,6 +27,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      localizationsDelegates: [
+        FlutterI18nDelegate(
+          translationLoader: FileTranslationLoader(
+            basePath: "assets/locales/",
+            fallbackFile: "de",
+            useCountryCode: false,
+            decodeStrategies: [YamlDecodeStrategy()],
+          ),
+          missingTranslationHandler: (key, locale) {
+            print(
+                "--- Missing Key: $key, languageCode: ${locale.languageCode}");
+          },
+        ),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [
+        Locale('de'),
+        Locale('en'),
+      ],
       onGenerateRoute: (settings) {
         if (settings.name == ChallengePlayScreen.routeName) {
           return MaterialPageRoute<int>(

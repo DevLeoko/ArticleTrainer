@@ -6,6 +6,7 @@ import 'package:article_images/utils/word_data_store.dart';
 import 'package:article_images/widgets/background.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key key}) : super(key: key);
@@ -30,9 +31,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     if (connection == ConnectivityResult.none) {
       setState(() {
-        errorTitle = "Kein Internet!";
-        errorText =
-            "Es ist eine Internetverbindung für disese App erfoderlich!";
+        errorTitle = FlutterI18n.translate(context, "loading.noInternet");
+        errorText = FlutterI18n.translate(context, "loading.noInternetText");
       });
       return;
     }
@@ -44,9 +44,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       await WordDataStore().initialize();
     } catch (exc) {
       setState(() {
-        errorTitle = "Fehler!";
-        errorText =
-            "Beim Laden der Wörter ist ein Fehler aufgetreten! Überprüfe deine Internetverbindung und probiere es später erneut.";
+        errorTitle = FlutterI18n.translate(context, "loading.error");
+        errorText = FlutterI18n.translate(context, "loading.errorText");
       });
       return;
     }
@@ -62,7 +61,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (errorTitle == null) {
       child = Loading(
         myStyle: boldWhiteShadowFont,
-        text: "Lade Wörter...",
+        text: FlutterI18n.translate(context, "loading.loading"),
       );
     } else {
       child = Center(
@@ -93,7 +92,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
             RaisedButton(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: <Widget>[Icon(Icons.refresh), Text("Retry")],
+                children: <Widget>[
+                  Icon(Icons.refresh),
+                  I18nText("loading.retry")
+                ],
               ),
               onPressed: () => setState(() {
                 errorTitle = null;

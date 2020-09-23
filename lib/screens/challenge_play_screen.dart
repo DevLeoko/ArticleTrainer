@@ -4,6 +4,7 @@ import 'package:article_images/utils/word.dart';
 import 'package:article_images/widgets/interactive_base.dart';
 import 'package:article_images/widgets/quiz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class ChallengePlayScreen extends StatefulWidget {
   static const routeName = '/challenge/play';
@@ -45,18 +46,17 @@ class _ChallengePlayScreenState extends State<ChallengePlayScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Sicher, dass du abbrechen willst?"),
-            content: Text(
-                'Wenn du die Challenge frühzeitig verlässt, wird sie so gewertet, wie wenn du alle Artikel falsch geraten hättest.'),
+            title: I18nText("challenge.exitConfirm.title"),
+            content: I18nText("challenge.exitConfirm.text"),
             actions: <Widget>[
               FlatButton(
-                child: Text('Bleiben'),
+                child: I18nText("challenge.exitConfirm.stay"),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
               ),
               FlatButton(
-                child: Text('Ja, verlassen'),
+                child: I18nText("challenge.exitConfirm.exit"),
                 onPressed: () {
                   Navigator.of(context).pop(true);
                 },

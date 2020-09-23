@@ -2,6 +2,7 @@ import 'package:article_images/widgets/challenge_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:article_images/utils/styles.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class MonthView extends StatelessWidget {
   static const boxWidth = 40.0;
@@ -17,20 +18,8 @@ class MonthView extends StatelessWidget {
     final startOffset = DateTime(year, month, 1).weekday - 1;
     final rows = ((days + startOffset) / 7).ceil();
 
-    final monthName = [
-      "Januar",
-      "Februar",
-      "März",
-      "April",
-      "Mai",
-      "Juni",
-      "Juli",
-      "August",
-      "September",
-      "Oktober",
-      "November",
-      "Dezember"
-    ][month - 1];
+    final monthName = FlutterI18n.translate(context, "challenge.months")
+        .split(" ")[month - 1];
 
     return Column(
       mainAxisSize: MainAxisSize.min,

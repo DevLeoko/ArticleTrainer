@@ -4,6 +4,7 @@ import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/home_button.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -46,18 +47,20 @@ class SettingsScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Text(
-                        "Einstellungen",
+                        FlutterI18n.translate(context, "settings.title"),
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       ToggleSetting(
-                        name: "Zeige Streaks",
+                        name: FlutterI18n.translate(
+                            context, "settings.showStreaks"),
                         tag: hide_streak,
                         inverted: true,
                         defaultValue: true,
                         callback: (val) => SettingsManger().hideStreaks = !val,
                       ),
                       ToggleSetting(
-                          name: "Sende Analytics",
+                          name: FlutterI18n.translate(
+                              context, "settings.sendAnalytics"),
                           tag: use_analytics,
                           defaultValue: false,
                           callback: (val) => FirebaseAnalytics()
@@ -66,7 +69,7 @@ class SettingsScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Text(
-                        "Entwickler",
+                        FlutterI18n.translate(context, "settings.aboutDev"),
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       SizedBox(
@@ -107,7 +110,7 @@ class SettingsScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Text(
-                        "Dir gefällt die App?",
+                        FlutterI18n.translate(context, "settings.rateUsTitle"),
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       RaisedButton(
@@ -115,7 +118,8 @@ class SettingsScreen extends StatelessWidget {
                         textColor: Colors.white,
                         onPressed: () => launch(
                             "https://play.google.com/store/apps/details?id=io.leokogar.article_images"),
-                        child: Text("SAG UNS DEINE MEINUNG"),
+                        child: Text(FlutterI18n.translate(
+                            context, "settings.rateUsAction")),
                       ),
                       SizedBox(
                         height: 10,
@@ -128,25 +132,28 @@ class SettingsScreen extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               child: Text(
-                                "Datenschutz",
+                                FlutterI18n.translate(
+                                    context, "settings.privacy"),
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),
                               ),
-                              onTap: () => launch(
-                                  "http://skamps.eu/artikel-trainer/datenschutz.html"),
+                              onTap: () => launch(FlutterI18n.translate(
+                                  context, "settings.privacyLink")),
                             ),
                             GestureDetector(
                               child: Text(
-                                "Impressum",
+                                FlutterI18n.translate(
+                                    context, "settings.imprint"),
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),
                               ),
-                              onTap: () => launch(
-                                  "http://skamps.eu/artikel-trainer/impressum.html"),
+                              onTap: () => launch(FlutterI18n.translate(
+                                  context, "settings.imprintLink")),
                             ),
                             GestureDetector(
                               child: Text(
-                                "App Info",
+                                FlutterI18n.translate(
+                                    context, "settings.appInfo"),
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),
                               ),
@@ -156,8 +163,8 @@ class SettingsScreen extends StatelessWidget {
                                   "assets/images/icon.png",
                                   scale: 4,
                                 ),
-                                applicationName:
-                                    "Der Die Das - Artikel mit Bildern lernen",
+                                applicationName: FlutterI18n.translate(
+                                    context, "settings.appTitle"),
                               ),
                             )
                           ],

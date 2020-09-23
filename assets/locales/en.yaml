@@ -1,0 +1,75 @@
+loading:
+  loading: "Loading words..."
+  error: "Oh no!"
+  errorText: "An error occurred loading the words! Check your internet connection and try again later."
+  noInternet: "No connection!"
+  noInternetText: "You need to be connected to the internet to use this app"
+  retry: "Retry"
+
+home:
+  begin: "Start"
+  dailyChallange: "Daily Challenge"
+  settings: "Settings"
+
+settings:
+  title: "Settings"
+  showStreaks: "Show streaks"
+  sendAnalytics: "Send analytics"
+  aboutDev: "Developer"
+  rateUsTitle: "Do you enjoy the app?"
+  rateUsAction: "RATE US"
+  privacy: "Privacy policy"
+  privacyLink: "http://skamps.eu/artikel-trainer/datenschutz.html"
+  imprint: "Imprint"
+  imprintLink: "http://skamps.eu/artikel-trainer/impressum.html"
+  appInfo: "App Info"
+  appTitle: "Der Die Das - Learn articles with images"
+
+challenge:
+  days: "M T W T F S S"
+  months: "January February March April May June July August September October November December"
+  error: "Oh no 😔"
+  errorText: "We were not able to load the challenge. Check your internet connection and try again later."
+  errorAck: "Okay"
+  onceADay: "You already tried this challenge today!"
+  onceADayText: "For each challenge, you only have one try per day. Come back tomorrow and try again 👍"
+  onceADayAck: "Alright"
+  exitConfirm:
+    title: "Hold on!"
+    text: "Are you sure you already want to exit the challenge? When exiting a challenge prematurely it will be counted as if you guessed every article wrong."
+    stay: "Stay"
+    exit: "Yes, exit"
+
+quiz:
+  imageCredit:
+    t1: "Image: "
+    t2: " on "
+
+score:
+  countParticle: " word"
+  streak: "Streak"
+  today: "today"
+  month: "this month"
+  allTime: "all-time"
+
+rating:
+  title: "GREAT JOB"
+  text1: "You keep improving!"
+  text2: "If you got a moment, then I'd love to hear your opinion about this app"
+  text3: "How would you rate this app so far?"
+  goodRating: "I am really glad to hear that! Would you be willing to share your opinion with the world and rate us on the play store?"
+  badRating: "Oh, let's do something about that! Send me a mail about what you dislike and how I can improve this app for you."
+  store: "Rate us"
+  mail: "Send me an e-mail"
+  exit: "Cancel"
+
+privacy:
+  title: "Help us to improve this app"
+  text: >- 
+    We would like to collect some user data to continuously improve this app.
+    This helps us to better understand what's important to our users and what we can do even better.
+    You can change this at any time in the settings.
+  button: "Our privacy policy"
+  link: "http://skamps.eu/artikel-trainer/datenschutz.html"
+  allow: "Allow"
+  deny: "Disallow"
