@@ -1,5 +1,6 @@
 import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/screens/home_screen.dart';
+import 'package:article_images/utils/styles.dart';
 import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/home_button.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -8,16 +9,24 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   static const routeName = '/settings';
 
   const SettingsScreen({Key key}) : super(key: key);
   static const hide_streak = "settings_hide_streak";
   static const use_analytics = "use_analytics";
   static const has_requested_rating = "has_requested_rating";
+  static const language = "language";
 
   @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  @override
   Widget build(BuildContext context) {
+    final cLang = FlutterI18n.currentLocale(context).languageCode;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -53,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
                       ToggleSetting(
                         name: FlutterI18n.translate(
                             context, "settings.showStreaks"),
-                        tag: hide_streak,
+                        tag: SettingsScreen.hide_streak,
                         inverted: true,
                         defaultValue: true,
                         callback: (val) => SettingsManger().hideStreaks = !val,
@@ -61,10 +70,53 @@ class SettingsScreen extends StatelessWidget {
                       ToggleSetting(
                           name: FlutterI18n.translate(
                               context, "settings.sendAnalytics"),
-                          tag: use_analytics,
+                          tag: SettingsScreen.use_analytics,
                           defaultValue: false,
                           callback: (val) => FirebaseAnalytics()
                               .setAnalyticsCollectionEnabled(val)),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        FlutterI18n.translate(context, "settings.language"),
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Wrap(
+                        alignment: WrapAlignment.spaceAround,
+                        runAlignment: WrapAlignment.spaceAround,
+                        spacing: 15,
+                        children: [
+                          for (final lang in ["de", "en"])
+                            GestureDetector(
+                              onTap: () async {
+                                await FlutterI18n.refresh(
+                                    context, Locale(lang));
+
+                                await SharedPreferences.getInstance().then(
+                                    (prefs) => prefs.setString(
+                                        SettingsScreen.language, lang));
+
+                                setState(() {});
+                              },
+                              child: Container(
+                                child: Image.asset(
+                                  "assets/images/$lang.png",
+                                  scale: 2,
+                                ),
+                                padding: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: lang == cLang
+                                      ? flatBlue
+                                      : Colors.grey.shade300,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            )
+                        ],
+                      ),
                       SizedBox(
                         height: 15,
                       ),

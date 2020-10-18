@@ -1,5 +1,7 @@
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/screens/challenge_play_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_i18n/loaders/decoders/yaml_decode_strategy.dart';
 import 'package:flutter_i18n/loaders/file_translation_loader.dart';
@@ -30,8 +32,8 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: [
         FlutterI18nDelegate(
           translationLoader: FileTranslationLoader(
-            basePath: "assets/locales/",
-            fallbackFile: "de",
+            basePath: "assets/locales",
+            fallbackFile: "en",
             useCountryCode: false,
             decodeStrategies: [YamlDecodeStrategy()],
           ),

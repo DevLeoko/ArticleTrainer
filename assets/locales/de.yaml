@@ -15,6 +15,7 @@ settings:
   title: "Einstellungen"
   showStreaks: "Zeige Streaks"
   sendAnalytics: "Sende Analytics"
+  language: "Sprache"
   aboutDev: "Entwickler"
   rateUsTitle: "Dir gefällt die App?"
   rateUsAction: "SAG UNS DEINE MEINUNG"
