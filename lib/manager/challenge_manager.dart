@@ -99,6 +99,6 @@ class ChallengeManager {
   }
 
   static toDayCode(int year, int month, int day) {
-    return (year - 2020) * 400 + month * 40 + day;
+    return (year - 2020) * 600 + month * 40 + day;
   }
 }
