@@ -17,6 +17,7 @@ class SettingsScreen extends StatefulWidget {
   static const use_analytics = "use_analytics";
   static const has_requested_rating = "has_requested_rating";
   static const language = "language";
+  static const sounds = "sounds";
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
@@ -66,6 +67,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         inverted: true,
                         defaultValue: true,
                         callback: (val) => SettingsManger().hideStreaks = !val,
+                      ),
+                      ToggleSetting(
+                        name: FlutterI18n.translate(context, "settings.sounds"),
+                        tag: SettingsScreen.sounds,
+                        inverted: false,
+                        defaultValue: true,
+                        callback: (val) => SettingsManger().sounds = val,
                       ),
                       ToggleSetting(
                           name: FlutterI18n.translate(

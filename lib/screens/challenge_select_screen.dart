@@ -1,3 +1,4 @@
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:article_images/widgets/interactive_base.dart';
 import 'package:article_images/widgets/month_view.dart';
@@ -52,6 +53,8 @@ class ChallengeSelectScreen extends StatelessWidget {
                           viewportFraction: 0.8,
                           initialPage: currentIndex,
                         ),
+                        onPageChanged: (_) =>
+                            SettingsManger().playSound("slide"),
                         itemBuilder: (context, index) {
                           return MonthView(
                             month: (index + startMonth - 1) % 12 + 1,

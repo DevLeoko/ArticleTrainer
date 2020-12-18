@@ -1,3 +1,4 @@
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:flutter/material.dart';
 
 class ExitButton extends StatelessWidget {
@@ -14,7 +15,10 @@ class ExitButton extends StatelessWidget {
             backgroundColor: Colors.white,
             foregroundColor: Colors.blue.shade300,
             child: Icon(Icons.close),
-            onPressed: () => Navigator.of(context).maybePop()),
+            onPressed: () {
+              SettingsManger().playSound("longPop", volume: 0.6);
+              Navigator.of(context).maybePop();
+            }),
       ),
     );
   }

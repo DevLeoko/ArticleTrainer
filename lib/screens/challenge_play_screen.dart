@@ -1,4 +1,5 @@
 import 'package:article_images/manager/challenge_manager.dart';
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:article_images/utils/word.dart';
 import 'package:article_images/widgets/interactive_base.dart';
@@ -33,6 +34,7 @@ class _ChallengePlayScreenState extends State<ChallengePlayScreen> {
   }
 
   _done() {
+    SettingsManger().playSound("longPop", volume: 0.6);
     Navigator.pop(context, _correct.where((element) => !element).length);
   }
 

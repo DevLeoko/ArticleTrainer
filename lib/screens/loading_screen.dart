@@ -52,6 +52,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     ChallengeManager().init();
 
+    SettingsManger().playSound("longPop");
     Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
   }
 

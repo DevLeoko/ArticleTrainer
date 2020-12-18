@@ -77,8 +77,11 @@ class HomeScreen extends StatelessWidget {
                           child: ThemeButton(
                             color: Article.der.color(),
                             text: FlutterI18n.translate(context, "home.begin"),
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed(PlayScreen.routeName),
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(PlayScreen.routeName);
+                              SettingsManger().playSound("tap");
+                            },
                           ),
                         ),
                       ),
@@ -92,8 +95,11 @@ class HomeScreen extends StatelessWidget {
                             color: Article.die.color(),
                             text: FlutterI18n.translate(
                                 context, "home.dailyChallange"),
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed(ChallengeSelectScreen.routeName),
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(ChallengeSelectScreen.routeName);
+                              SettingsManger().playSound("tap");
+                            },
                           ),
                         ),
                       ),
@@ -106,8 +112,11 @@ class HomeScreen extends StatelessWidget {
                             color: Article.das.color(),
                             text:
                                 FlutterI18n.translate(context, "home.settings"),
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed(SettingsScreen.routeName),
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(SettingsScreen.routeName);
+                              SettingsManger().playSound("tap");
+                            },
                           ),
                         ),
                       ),

@@ -1,3 +1,4 @@
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:flutter/material.dart';
 
 class HomeButton extends StatelessWidget {
@@ -14,8 +15,11 @@ class HomeButton extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: Colors.blue.shade300,
           child: Icon(Icons.home),
-          onPressed: () => Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home', (_) => false),
+          onPressed: () {
+            SettingsManger().playSound("longPop", volume: 0.6);
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/home', (_) => false);
+          },
         ),
       ),
     );

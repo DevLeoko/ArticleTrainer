@@ -23,30 +23,31 @@ class WordView extends StatelessWidget {
       fit: StackFit.expand,
       children: <Widget>[
         ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            child: FutureBuilder(
-              future: word.cachedImage,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState != ConnectionState.waiting) {
-                  if (snapshot.hasData) {
-                    return Image.memory(
-                      snapshot.data,
-                      fit: BoxFit.cover,
-                      colorBlendMode: BlendMode.srcOver,
-                      color: Colors.black12,
-                    );
-                  } else {
-                    return new Icon(
-                      Icons.warning,
-                      size: size * 0.7,
-                      color: Colors.red,
-                    );
-                  }
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          child: FutureBuilder(
+            future: word.cachedImage,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.waiting) {
+                if (snapshot.hasData) {
+                  return Image.memory(
+                    snapshot.data,
+                    fit: BoxFit.cover,
+                    colorBlendMode: BlendMode.srcOver,
+                    color: Colors.black12,
+                  );
                 } else {
-                  return CircularProgressIndicator();
+                  return new Icon(
+                    Icons.warning,
+                    size: size * 0.7,
+                    color: Colors.red,
+                  );
                 }
-              },
-            )),
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
         Center(
           child: Padding(
             padding: const EdgeInsets.all(12.0),

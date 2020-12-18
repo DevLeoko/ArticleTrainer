@@ -14,6 +14,7 @@ home:
 settings:
   title: "Settings"
   showStreaks: "Show streaks"
+  sounds: "Sounds"
   sendAnalytics: "Send analytics"
   language: "Language"
   aboutDev: "Developer"

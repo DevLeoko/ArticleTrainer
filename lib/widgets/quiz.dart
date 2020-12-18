@@ -1,3 +1,4 @@
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/screens/home_screen.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:article_images/utils/word_data_store.dart';
@@ -44,8 +45,12 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
           vsync: this, duration: Duration(milliseconds: 300));
       _controllers.add(contr);
 
-      Future.delayed(Duration(milliseconds: 200 + i * 100))
-          .then((value) => mounted ? contr.forward() : false);
+      Future.delayed(Duration(milliseconds: 200 + i * 100)).then((value) {
+        if (mounted) {
+          SettingsManger().playSound("typewriter", volume: 0.4);
+          contr.forward();
+        }
+      });
     }
 
     currentWord = widget.wordSupplier(true);
@@ -68,6 +73,7 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
     });
 
     nextWord?.cachedImage;
+    SettingsManger().playSound("tap2");
 
     BackgroundStateContainer.of(context).state = BackgroundState.neutral;
   }
@@ -82,7 +88,12 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
     widget.guessCallback(isRight);
 
     currentWord.occurred++;
-    if (isRight) currentWord.guessed++;
+    if (isRight) {
+      currentWord.guessed++;
+      SettingsManger().playSound("tap");
+    } else {
+      SettingsManger().playSound("error");
+    }
 
     WordDataStore().update(currentWord);
 
