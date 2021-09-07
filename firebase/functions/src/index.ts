@@ -7,7 +7,7 @@ import data from "./assets/app_data.json";
 //
 export const main = functions.https.onRequest((request, response) => {
   if (request.query.version){
-    response.send({ version: 8 });
+    response.send({ version: 9 });
   } else if(request.query.challenge) {
     const dayCode: number = request.query.daycode;
     const rand = new SeededRandomUtilities(dayCode.toString());
