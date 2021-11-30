@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 
 class ThemeButton extends StatelessWidget {
   const ThemeButton({
-    Key key,
-    this.color,
-    this.onPressed,
-    this.text,
+    Key? key,
+    required this.color,
+    required this.onPressed,
+    required this.text,
   }) : super(key: key);
 
   final Color color;
-  final Function onPressed;
+  final void Function() onPressed;
   final String text;
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      textColor: color,
-      padding: EdgeInsets.all(5),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+    return ElevatedButton(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(EdgeInsets.all(5)),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        )),
+        backgroundColor: MaterialStateProperty.all(Colors.white),
+        foregroundColor: MaterialStateProperty.all(color),
       ),
-      color: Colors.white,
       onPressed: onPressed,
       child: Text(
         text,

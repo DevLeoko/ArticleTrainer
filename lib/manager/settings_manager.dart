@@ -1,5 +1,4 @@
 import 'package:article_images/screens/settings_screen.dart';
-import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,11 +16,11 @@ class SettingsManger {
     return _instance;
   }
 
-  bool requestRating;
-  bool hideStreaks;
-  bool sounds;
-  bool askForAnalytics = false;
-  String language;
+  late bool requestRating;
+  late bool hideStreaks;
+  late bool sounds;
+  late bool askForAnalytics = false;
+  String? language;
 
   init(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -32,10 +31,10 @@ class SettingsManger {
 
     sounds = prefs.getBool(SettingsScreen.sounds) ?? true;
 
-    language = prefs.getString(SettingsScreen.language);
+    language = prefs.getString(SettingsScreen.language)!;
 
     if (language != null) {
-      FlutterI18n.refresh(context, Locale(language));
+      FlutterI18n.refresh(context, Locale(language!));
     }
 
     if (!prefs.containsKey(SettingsScreen.use_analytics)) {

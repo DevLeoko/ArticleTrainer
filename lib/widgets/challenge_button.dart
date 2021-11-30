@@ -12,7 +12,7 @@ class ChallengeButton extends StatefulWidget {
   final int year, month, day;
 
   const ChallengeButton(
-      {Key key, @required this.year, @required this.month, @required this.day})
+      {Key? key, required this.year, required this.month, required this.day})
       : super(key: key);
 
   @override
@@ -37,11 +37,11 @@ class _ChallengeButtonState extends State<ChallengeButton> {
     } catch (exc) {
       showDialog(
         context: context,
-        child: AlertDialog(
+        builder: (context) => AlertDialog(
           title: I18nText("challenge.error"),
           content: I18nText("challenge.errorText"),
           actions: [
-            FlatButton(
+            TextButton(
               child: I18nText("challenge.errorAck"),
               onPressed: () => Navigator.of(context).pop(),
             )
@@ -56,7 +56,7 @@ class _ChallengeButtonState extends State<ChallengeButton> {
       return;
     }
 
-    int fails = await Navigator.of(context)
+    int? fails = await Navigator.of(context)
         .pushNamed(ChallengePlayScreen.routeName, arguments: {
       'words': words,
       'tag': "${ChallengeButton.heroTagPrefx}$dayCode"
@@ -85,7 +85,7 @@ class _ChallengeButtonState extends State<ChallengeButton> {
             now.month == widget.month &&
             now.day >= widget.day);
 
-    final notToday = challengeData?.lastTry == currentDayCode;
+    final notToday = challengeData.lastTry == currentDayCode;
 
     var color = Colors.white;
 
@@ -93,15 +93,13 @@ class _ChallengeButtonState extends State<ChallengeButton> {
         now.month == widget.month &&
         now.day == widget.day) color = flatBlue;
 
-    if (challengeData != null) {
-      final fails = challengeData.fails;
-      if (fails == 0)
-        color = flatGreen;
-      else if (fails <= 3)
-        color = flatOrange;
-      else
-        color = flatRed;
-    }
+    final fails = challengeData.fails;
+    if (fails == 0)
+      color = flatGreen;
+    else if (fails <= 3)
+      color = flatOrange;
+    else
+      color = flatRed;
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -110,7 +108,7 @@ class _ChallengeButtonState extends State<ChallengeButton> {
         child: Container(
           width: MonthView.boxWidth - 10,
           height: MonthView.boxWidth - 10,
-          child: RaisedButton(
+          child: ElevatedButton(
             child: loading
                 ? CircularProgressIndicator(
                     strokeWidth: 2,
@@ -119,23 +117,25 @@ class _ChallengeButtonState extends State<ChallengeButton> {
                     ),
                   )
                 : null,
-            padding: EdgeInsets.all(5),
-            elevation: notToday ? 1 : 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.all(5)),
+              elevation: MaterialStateProperty.all(notToday ? 1 : 2),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              )),
+              backgroundColor: MaterialStateProperty.all(color),
             ),
-            color: color,
             onPressed: available
                 ? () {
                     if (!loading) {
                       if (notToday) {
                         showDialog(
                           context: context,
-                          child: AlertDialog(
+                          builder: (context) => AlertDialog(
                             title: I18nText("challenge.onceADay"),
                             content: I18nText("challenge.onceADayText"),
                             actions: [
-                              FlatButton(
+                              TextButton(
                                 child: I18nText("challenge.onceADayAck"),
                                 onPressed: () => Navigator.of(context).pop(),
                               )

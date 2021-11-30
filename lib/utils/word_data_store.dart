@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'word.dart';
 
 class WordDataStore {
-  Database _database;
+  Database? _database;
   List<Word> _words = [];
 
   static final WordDataStore _singeton = WordDataStore._();
@@ -21,8 +21,8 @@ class WordDataStore {
   }
 
   Future<List<Map<String, dynamic>>> _fetchWords() async {
-    final data =
-        await http.get("https://us-central1-app-2b1a.cloudfunctions.net/main");
+    final data = await http
+        .get(Uri.https("us-central1-app-2b1a.cloudfunctions.net", "/main"));
     if (data.statusCode != 200) {
       throw Exception("Failed to fetch words!");
     } else {
@@ -32,8 +32,8 @@ class WordDataStore {
 
   Future<int> _fetchListVersion() async {
     final data = await http
-        .get(
-            "https://us-central1-app-2b1a.cloudfunctions.net/main?version=true")
+        .get(Uri.https("us-central1-app-2b1a.cloudfunctions.net", "/main",
+            {"version": "true"}))
         .timeout(Duration(seconds: 10));
     if (data.statusCode != 200) {
       throw Exception("Failed to fetch version!");
@@ -84,9 +84,9 @@ class WordDataStore {
   }
 
   Future<Database> get _connection async {
-    if (_database != null) return _database;
+    if (_database != null) return _database!;
     _database = await _getDatabaseInstance();
-    return _database;
+    return _database!;
   }
 
   Future<Database> _getDatabaseInstance() async {

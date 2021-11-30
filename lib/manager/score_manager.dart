@@ -11,13 +11,13 @@ class ScoreManager {
 
   static const String prefix = "stats_";
 
-  SharedPreferences _preferences;
-  int _montlyStreak;
-  int _dailyStreak;
-  int _allSteak;
+  late SharedPreferences _preferences;
+  late int _montlyStreak;
+  late int _dailyStreak;
+  late int _allSteak;
   int previousStreak = 0;
   int currentStreak = 0;
-  int initialMonthlyStreak;
+  late int initialMonthlyStreak;
   List<void Function()> _notifiers = [];
 
   Future<void> init() async {

@@ -17,7 +17,7 @@ extension FancyArticle on Article {
       case "N":
         return Article.das;
       default:
-        return null;
+        return Article.der;
     }
   }
 

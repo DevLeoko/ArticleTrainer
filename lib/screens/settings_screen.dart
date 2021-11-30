@@ -12,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingsScreen extends StatefulWidget {
   static const routeName = '/settings';
 
-  const SettingsScreen({Key key}) : super(key: key);
+  const SettingsScreen({Key? key}) : super(key: key);
   static const hide_streak = "settings_hide_streak";
   static const use_analytics = "use_analytics";
   static const has_requested_rating = "has_requested_rating";
@@ -26,7 +26,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    final cLang = FlutterI18n.currentLocale(context).languageCode;
+    final cLang = FlutterI18n.currentLocale(context)?.languageCode;
 
     return Scaffold(
       body: Stack(
@@ -173,9 +173,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         FlutterI18n.translate(context, "settings.rateUsTitle"),
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
-                      RaisedButton(
-                        color: Colors.blue,
-                        textColor: Colors.white,
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue),
+                        ),
                         onPressed: () => launch(
                             "https://play.google.com/store/apps/details?id=io.leokogar.article_images"),
                         child: Text(FlutterI18n.translate(
@@ -245,11 +249,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
 class ToggleSetting extends StatelessWidget {
   const ToggleSetting(
-      {Key key,
-      @required this.name,
-      @required this.tag,
+      {Key? key,
+      required this.name,
+      required this.tag,
       this.inverted = false,
-      @required this.defaultValue,
+      required this.defaultValue,
       this.callback})
       : super(key: key);
 
@@ -257,18 +261,18 @@ class ToggleSetting extends StatelessWidget {
   final String tag;
   final bool inverted;
   final bool defaultValue; // not inverted
-  final Function(bool) callback; // not inverted
+  final Function(bool)? callback; // not inverted
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
-        FutureBuilder(
+        FutureBuilder<SharedPreferences>(
           future: SharedPreferences.getInstance(),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              SharedPreferences prefs = snapshot.data;
+              SharedPreferences prefs = snapshot.data!;
               return StatefulBuilder(
                 builder: (_, setState) {
                   return Switch(
@@ -278,7 +282,7 @@ class ToggleSetting extends StatelessWidget {
                     onChanged: (val) => prefs
                         .setBool(tag, inverted ? !val : val)
                         .then((_) => setState(() {
-                              if (callback != null) callback(val);
+                              if (callback != null) callback!(val);
                             })),
                   );
                 },

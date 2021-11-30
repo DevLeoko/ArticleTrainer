@@ -11,11 +11,12 @@ class ChallengeManager {
   static final _instance = ChallengeManager._();
   static const String prefix = "challenge_";
   static const int challengeSize = 15;
+
   ChallengeManager._();
 
   final Map<int, ChallengeData> _challengeData = {};
 
-  SharedPreferences _preferences;
+  late SharedPreferences _preferences;
 
   factory ChallengeManager() {
     return _instance;
@@ -28,17 +29,18 @@ class ChallengeManager {
         .getKeys()
         .where((str) => str.startsWith(prefix))
         .forEach((str) {
-      int val = _preferences.getInt(str);
+      int val = _preferences.getInt(str)!;
       var dayCode = int.parse(str.split("_")[1]);
+      var challangeData = _challengeData[dayCode];
       if (str.split("_")[2] == "fails") {
-        if (_challengeData[dayCode] != null) {
-          _challengeData[dayCode].fails = val;
+        if (challangeData != null) {
+          challangeData.fails = val;
         } else {
           _challengeData[dayCode] = ChallengeData(fails: val);
         }
       } else {
-        if (_challengeData[dayCode] != null) {
-          _challengeData[dayCode].lastTry = val;
+        if (challangeData != null) {
+          challangeData.lastTry = val;
         } else {
           _challengeData[dayCode] = ChallengeData(lastTry: val);
         }
@@ -48,15 +50,15 @@ class ChallengeManager {
 
   _save(int dayCode) async {
     await _preferences.setInt(
-        "$prefix$dayCode\_fails", _challengeData[dayCode].fails);
+        "$prefix$dayCode\_fails", _challengeData[dayCode]!.fails);
     await _preferences.setInt(
-        "$prefix$dayCode\_lastTry", _challengeData[dayCode].lastTry);
+        "$prefix$dayCode\_lastTry", _challengeData[dayCode]!.lastTry);
   }
 
   Future<List<Word>> startChallenge(int dayCode) async {
     final data = await http
-        .get(
-            "https://us-central1-app-2b1a.cloudfunctions.net/main?challenge=true&daycode=$dayCode")
+        .get(Uri.https("https://us-central1-app-2b1a.cloudfunctions.net",
+            "/main", {"challenge": true, "daycode": dayCode}))
         .timeout(Duration(seconds: 6));
 
     if (data.statusCode != 200) {
@@ -71,7 +73,7 @@ class ChallengeManager {
       _challengeData[dayCode] =
           ChallengeData(fails: 15, lastTry: currentDayCode);
     } else {
-      _challengeData[dayCode].lastTry = currentDayCode;
+      _challengeData[dayCode]!.lastTry = currentDayCode;
     }
 
     await _save(dayCode);
@@ -83,15 +85,15 @@ class ChallengeManager {
   }
 
   completeChallenge(int dayCode, int fails) async {
-    if (_challengeData[dayCode].fails == -1 ||
-        _challengeData[dayCode].fails > fails) {
-      _challengeData[dayCode].fails = fails;
+    if (_challengeData[dayCode]!.fails == -1 ||
+        _challengeData[dayCode]!.fails > fails) {
+      _challengeData[dayCode]!.fails = fails;
       await _save(dayCode);
     }
   }
 
   ChallengeData getData(int dayCode) {
-    return _challengeData[dayCode];
+    return _challengeData[dayCode]!;
   }
 
   static toDayCodeFromDate(DateTime date) {

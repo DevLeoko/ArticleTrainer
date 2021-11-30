@@ -2,7 +2,7 @@ import 'package:article_images/manager/settings_manager.dart';
 import 'package:flutter/material.dart';
 
 class HomeButton extends StatelessWidget {
-  const HomeButton({Key key}) : super(key: key);
+  const HomeButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

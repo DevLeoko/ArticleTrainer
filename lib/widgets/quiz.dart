@@ -12,15 +12,15 @@ import 'package:article_images/widgets/word_view.dart';
 import 'package:article_images/widgets/theme_button.dart';
 
 class Quiz extends StatefulWidget {
-  final Word Function(bool) wordSupplier;
+  final Word? Function(bool) wordSupplier;
   final Function(bool) guessCallback;
-  final Function() doneCallback;
+  final Function()? doneCallback;
   final String heroTag;
 
   const Quiz({
-    Key key,
-    @required this.wordSupplier,
-    @required this.guessCallback,
+    Key? key,
+    required this.wordSupplier,
+    required this.guessCallback,
     this.doneCallback,
     this.heroTag = "WordView",
   }) : super(key: key);
@@ -30,9 +30,9 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> with TickerProviderStateMixin {
-  Word currentWord;
-  Word nextWord;
-  Article currentGuess;
+  late Word currentWord;
+  Word? nextWord;
+  Article? currentGuess;
 
   List<AnimationController> _controllers = [];
 
@@ -53,8 +53,8 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
       });
     }
 
-    currentWord = widget.wordSupplier(true);
-    currentWord?.cachedImage;
+    currentWord = widget.wordSupplier(true)!;
+    currentWord.cachedImage;
     nextWord = widget.wordSupplier(true);
     nextWord?.cachedImage;
   }
@@ -66,8 +66,10 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
   }
 
   _nextWord() {
+    if (nextWord == null) return;
+
     setState(() {
-      currentWord = nextWord;
+      currentWord = nextWord!;
       currentGuess = null;
       nextWord = widget.wordSupplier(false);
     });
@@ -140,11 +142,13 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
               : Container(
                   height: size / 3.5,
                   width: size / 3.5,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      )),
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
                     ),
-                    color: Colors.white,
                     child: Icon(
                         nextWord != null ? Icons.arrow_forward : Icons.check),
                     onPressed: nextWord != null
@@ -182,12 +186,16 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
 }
 
 class ArticleButton extends StatelessWidget {
-  const ArticleButton({Key key, this.article, this.size, this.onPressed})
+  const ArticleButton(
+      {Key? key,
+      required this.article,
+      required this.size,
+      required this.onPressed})
       : super(key: key);
 
   final Article article;
   final double size;
-  final Function onPressed;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {

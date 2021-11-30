@@ -10,7 +10,7 @@ class ChallengeSelectScreen extends StatelessWidget {
   static const startMonth = 9;
   static const startYear = 2020;
 
-  const ChallengeSelectScreen({Key key}) : super(key: key);
+  const ChallengeSelectScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

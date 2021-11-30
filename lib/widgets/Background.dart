@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class BackgroundStateContainer extends ChangeNotifier {
   BackgroundState _state = BackgroundState.neutral;
 
-  get state => _state;
+  BackgroundState get state => _state;
   set state(BackgroundState state) {
     _state = state;
     notifyListeners();
@@ -20,7 +20,7 @@ class Background extends StatefulWidget {
   static final globalKey = GlobalKey();
   final BackgroundState backgroundState;
 
-  Background({Key key, this.backgroundState = BackgroundState.neutral})
+  Background({Key? key, this.backgroundState = BackgroundState.neutral})
       : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ enum BackgroundState { success, failure, neutral }
 class _BackgroundState extends State<Background>
     with SingleTickerProviderStateMixin {
   static double _startValue = 0;
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _BackgroundState extends State<Background>
           animation: _controller,
           builder: (context, child) {
             final isNeutral = widget.backgroundState == BackgroundState.neutral;
-            return TweenAnimationBuilder(
+            return TweenAnimationBuilder<double>(
               tween: Tween(begin: 0.0, end: isNeutral ? 0.0 : 1.0),
               curve: Curves.easeOutQuad,
               duration: Duration(milliseconds: 400),

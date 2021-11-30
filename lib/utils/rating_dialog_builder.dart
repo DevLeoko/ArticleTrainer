@@ -3,16 +3,15 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Widget buildRatingDialog(context) {
-  int rating;
+  int? rating;
   final time = DateTime.now();
 
   return AlertDialog(
     actions: <Widget>[
-      FlatButton(
+      TextButton(
         onPressed: () {
           Navigator.pop(context);
           FirebaseAnalytics().logEvent(name: "rating", parameters: {
@@ -25,7 +24,7 @@ Widget buildRatingDialog(context) {
     ],
     content: SingleChildScrollView(
       child: StatefulBuilder(builder: (context, setState) {
-        String text;
+        String? text;
 
         if (rating != null) {
           text = FlutterI18n.translate(
@@ -65,16 +64,17 @@ Widget buildRatingDialog(context) {
             SizedBox(
               height: 5,
             ),
-            SmoothStarRating(
-              allowHalfRating: false,
-              borderColor: Colors.yellow.shade700,
-              color: Colors.yellow.shade600,
-              size: 35,
-              onRated: (val) => setState(() => rating = val.round()),
-            ),
+            //TODO
+            //   SmoothStarRating(
+            //   allowHalfRating: false,
+            //   borderColor: Colors.yellow.shade700,
+            //   color: Colors.yellow.shade600,
+            //   size: 35,
+            //   onRated: (val) => setState(() => rating = val.round()),
+            // ),
             if (text != null)
               ClipRect(
-                child: TweenAnimationBuilder(
+                child: TweenAnimationBuilder<double>(
                   tween: Tween(begin: 0.0, end: 1.0),
                   duration: Duration(milliseconds: 150),
                   curve: Curves.easeIn,
@@ -90,23 +90,27 @@ Widget buildRatingDialog(context) {
                               height: 10,
                             ),
                             Text(
-                              text,
+                              text!,
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 15),
                             ),
                             SizedBox(
                               height: 10,
                             ),
-                            RaisedButton(
-                                onPressed: () => launch(rating <= 3
+                            ElevatedButton(
+                                onPressed: () => launch(rating! <= 3
                                     ? "mailto:leoko4433@gmail.com?subject=Hey%20Leo!"
                                     : "https://play.google.com/store/apps/details?id=io.leokogar.article_images"),
-                                color: Colors.blue,
-                                textColor: Colors.white,
+                                style: ButtonStyle(
+                                    foregroundColor:
+                                        MaterialStateProperty.all(Colors.white),
+                                    backgroundColor:
+                                        MaterialStateProperty.all(Colors.blue)),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Icon(rating <= 3 ? Icons.mail : Icons.star),
+                                    Icon(
+                                        rating! <= 3 ? Icons.mail : Icons.star),
                                     SizedBox(
                                       width: 4,
                                     ),

@@ -7,8 +7,8 @@ class ScoreView extends StatefulWidget {
   final bool red;
 
   const ScoreView({
-    Key key,
-    this.red,
+    Key? key,
+    required this.red,
   }) : super(key: key);
 
   @override

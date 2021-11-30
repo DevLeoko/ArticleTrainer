@@ -12,7 +12,7 @@ class ChallengePlayScreen extends StatefulWidget {
   final List<Word> words;
   final String heroTag;
 
-  ChallengePlayScreen({Key key, @required this.words, @required this.heroTag})
+  ChallengePlayScreen({Key? key, required this.words, required this.heroTag})
       : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class _ChallengePlayScreenState extends State<ChallengePlayScreen> {
   int _index = 0;
   List<bool> _correct = [];
 
-  Word _getNextWord(initial) {
+  Word? _getNextWord(initial) {
     return widget.words.length > _index ? widget.words[_index++] : null;
   }
 
@@ -45,27 +45,28 @@ class _ChallengePlayScreenState extends State<ChallengePlayScreen> {
     }
 
     return await showDialog<bool>(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: I18nText("challenge.exitConfirm.title"),
-            content: I18nText("challenge.exitConfirm.text"),
-            actions: <Widget>[
-              FlatButton(
-                child: I18nText("challenge.exitConfirm.stay"),
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-              ),
-              FlatButton(
-                child: I18nText("challenge.exitConfirm.exit"),
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-              ),
-            ],
-          );
-        });
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: I18nText("challenge.exitConfirm.title"),
+                content: I18nText("challenge.exitConfirm.text"),
+                actions: <Widget>[
+                  TextButton(
+                    child: I18nText("challenge.exitConfirm.stay"),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                  ),
+                  TextButton(
+                    child: I18nText("challenge.exitConfirm.exit"),
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
+                ],
+              );
+            }) ??
+        false;
   }
 
   @override

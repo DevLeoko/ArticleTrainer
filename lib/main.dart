@@ -1,4 +1,3 @@
-import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/screens/challenge_play_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -20,8 +19,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
           missingTranslationHandler: (key, locale) {
             print(
-                "--- Missing Key: $key, languageCode: ${locale.languageCode}");
+                "--- Missing Key: $key, languageCode: ${locale?.languageCode}");
           },
         ),
         GlobalMaterialLocalizations.delegate,
@@ -68,7 +65,7 @@ class MyApp extends StatelessWidget {
           SettingsScreen.routeName: (ctx) => SettingsScreen(),
           ChallengeSelectScreen.routeName: (ctx) => ChallengeSelectScreen()
         };
-        WidgetBuilder builder = routes[settings.name];
+        WidgetBuilder builder = routes[settings.name]!;
         return MaterialPageRoute(builder: (ctx) => builder(ctx));
       },
     );

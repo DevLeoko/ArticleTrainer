@@ -9,7 +9,8 @@ class InteractiveBase extends StatelessWidget {
   final Widget child;
   final bool closeButton;
 
-  const InteractiveBase({Key key, this.child, this.closeButton = false})
+  const InteractiveBase(
+      {Key? key, required this.child, this.closeButton = false})
       : super(key: key);
 
   @override

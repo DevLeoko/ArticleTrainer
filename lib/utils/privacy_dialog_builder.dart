@@ -27,7 +27,7 @@ Widget buildPrivacyDialog(context) {
     ),
     actions: <Widget>[
       StatefulBuilder(
-        builder: (context, setState) => FlatButton(
+        builder: (context, setState) => TextButton(
           onPressed: () async {
             setState(() => loading = true);
             final preferences = await SharedPreferences.getInstance();
@@ -46,7 +46,7 @@ Widget buildPrivacyDialog(context) {
         ),
       ),
       StatefulBuilder(
-        builder: (context, setState) => FlatButton(
+        builder: (context, setState) => TextButton(
           onPressed: () async {
             setState(() => loading = true);
             final preferences = await SharedPreferences.getInstance();

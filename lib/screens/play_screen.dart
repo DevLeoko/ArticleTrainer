@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 class PlayScreen extends StatefulWidget {
   static const routeName = '/play';
 
-  PlayScreen({Key key}) : super(key: key);
+  PlayScreen({Key? key}) : super(key: key);
 
   @override
   _PlayScreenState createState() => _PlayScreenState();

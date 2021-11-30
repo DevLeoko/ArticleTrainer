@@ -21,8 +21,6 @@ class Image {
   }
 
   static Image fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return Image(
       map['imageId'],
       map['displayUrl'],

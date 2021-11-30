@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,10 +9,10 @@ import 'package:article_images/utils/word.dart';
 
 class WordView extends StatelessWidget {
   const WordView({
-    Key key,
-    @required this.size,
-    @required this.word,
-    @required this.solved,
+    Key? key,
+    required this.size,
+    required this.word,
+    required this.solved,
   }) : super(key: key);
 
   final double size;
@@ -24,13 +26,13 @@ class WordView extends StatelessWidget {
       children: <Widget>[
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          child: FutureBuilder(
+          child: FutureBuilder<Uint8List>(
             future: word.cachedImage,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.waiting) {
                 if (snapshot.hasData) {
                   return Image.memory(
-                    snapshot.data,
+                    snapshot.data!,
                     fit: BoxFit.cover,
                     colorBlendMode: BlendMode.srcOver,
                     color: Colors.black12,
@@ -56,7 +58,7 @@ class WordView extends StatelessWidget {
               children: <Widget>[
                 if (solved)
                   ClipRect(
-                    child: TweenAnimationBuilder(
+                    child: TweenAnimationBuilder<double>(
                       tween: Tween(begin: 0.0, end: 1.0),
                       duration: Duration(milliseconds: 400),
                       curve: Curves.bounceOut,

@@ -12,7 +12,7 @@ class Word {
   final Image image;
   int occurred;
   int guessed;
-  Future<Uint8List> _cachedImage;
+  Future<Uint8List>? _cachedImage;
 
   Word(this.id, this.word, this.article, this.image,
       [this.occurred = 0, this.guessed = 0]);
@@ -42,9 +42,10 @@ class Word {
   // static const maxImageSize = 1000 * 1000; //(*8) = 1MB
 
   Future<Uint8List> get cachedImage {
-    if (_cachedImage == null) _cachedImage = http.readBytes(image.displayUrl);
+    if (_cachedImage == null)
+      _cachedImage = http.readBytes(Uri.parse(image.displayUrl));
 
-    return _cachedImage;
+    return _cachedImage!;
   }
 
   @override

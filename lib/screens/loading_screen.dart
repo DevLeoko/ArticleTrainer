@@ -9,15 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LoadingScreen extends StatefulWidget {
-  const LoadingScreen({Key key}) : super(key: key);
+  const LoadingScreen({Key? key}) : super(key: key);
 
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  String errorTitle;
-  String errorText;
+  String? errorTitle;
+  String? errorText;
 
   @override
   void initState() {
@@ -78,19 +78,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
               height: 10,
             ),
             Text(
-              errorTitle,
+              errorTitle!,
               style: boldWhiteShadowFont,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: Text(
-                errorText,
+                errorText!,
                 textAlign: TextAlign.center,
                 style: boldWhiteShadowFont.copyWith(
                     fontSize: 14, color: Colors.grey.shade700),
               ),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -103,8 +103,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 errorText = null;
                 _fetchData();
               }),
-              color: Colors.blueAccent,
-              textColor: Colors.white,
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+              ),
             )
           ],
         ),
@@ -126,9 +128,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
 class Loading extends StatelessWidget {
   const Loading({
-    Key key,
-    @required this.myStyle,
-    @required this.text,
+    Key? key,
+    required this.myStyle,
+    required this.text,
   }) : super(key: key);
 
   final TextStyle myStyle;
