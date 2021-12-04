@@ -42,7 +42,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     try {
       await WordDataStore().initialize();
-    } catch (exc) {
+    } catch (exc, s) {
+      print(exc);
+      print(s);
       setState(() {
         errorTitle = FlutterI18n.translate(context, "loading.error");
         errorText = FlutterI18n.translate(context, "loading.errorText");
@@ -87,7 +89,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 errorText!,
                 textAlign: TextAlign.center,
                 style: boldWhiteShadowFont.copyWith(
-                    fontSize: 14, color: Colors.grey.shade700),
+                    shadows: null, fontSize: 14, color: Colors.grey.shade700),
               ),
             ),
             ElevatedButton(

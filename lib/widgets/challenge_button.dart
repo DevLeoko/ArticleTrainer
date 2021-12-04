@@ -35,6 +35,7 @@ class _ChallengeButtonState extends State<ChallengeButton> {
       words = await ChallengeManager().startChallenge(dayCode);
       await words[0].cachedImage;
     } catch (exc) {
+      print(exc);
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -85,7 +86,7 @@ class _ChallengeButtonState extends State<ChallengeButton> {
             now.month == widget.month &&
             now.day >= widget.day);
 
-    final notToday = challengeData.lastTry == currentDayCode;
+    final notToday = challengeData?.lastTry == currentDayCode;
 
     var color = Colors.white;
 
@@ -93,13 +94,15 @@ class _ChallengeButtonState extends State<ChallengeButton> {
         now.month == widget.month &&
         now.day == widget.day) color = flatBlue;
 
-    final fails = challengeData.fails;
-    if (fails == 0)
-      color = flatGreen;
-    else if (fails <= 3)
-      color = flatOrange;
-    else
-      color = flatRed;
+    if (challengeData != null) {
+      final fails = challengeData.fails;
+      if (fails == 0)
+        color = flatGreen;
+      else if (fails <= 3)
+        color = flatOrange;
+      else
+        color = flatRed;
+    }
 
     return Padding(
       padding: const EdgeInsets.all(5.0),

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'article.dart';
 
 class Word {
-  int id;
+  int? id;
   final String word;
   final Article article;
   final Image image;

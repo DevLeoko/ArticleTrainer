@@ -147,6 +147,8 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       )),
+                      foregroundColor: MaterialStateProperty.all(
+                          Theme.of(context).primaryColor),
                       backgroundColor: MaterialStateProperty.all(Colors.white),
                     ),
                     child: Icon(

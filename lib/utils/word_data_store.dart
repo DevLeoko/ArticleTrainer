@@ -52,11 +52,7 @@ class WordDataStore {
       _words =
           (await db.query("Word")).map((entry) => Word.fromMap(entry)).toList();
 
-      print(_words.length);
-
       if (version != prefs.getInt("listVersion")) {
-        await prefs.setInt("listVersion", version);
-
         Map<String, Word> oldWords = {for (var word in _words) word.word: word};
 
         final results = await _fetchWords();
@@ -75,6 +71,8 @@ class WordDataStore {
         final batch = db.batch();
         words.forEach((word) => batch.insert("Word", word.toMap()));
         List<int> ids = List<int>.from(await batch.commit());
+
+        await prefs.setInt("listVersion", version);
 
         for (var i = 0; i < words.length; i++) {
           words[i].id = ids[i];

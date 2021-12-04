@@ -31,7 +31,7 @@ class SettingsManger {
 
     sounds = prefs.getBool(SettingsScreen.sounds) ?? true;
 
-    language = prefs.getString(SettingsScreen.language)!;
+    language = prefs.getString(SettingsScreen.language);
 
     if (language != null) {
       FlutterI18n.refresh(context, Locale(language!));
