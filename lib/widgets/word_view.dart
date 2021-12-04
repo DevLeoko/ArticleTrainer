@@ -2,12 +2,13 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:article_images/utils/article.dart';
 import 'package:article_images/utils/word.dart';
 
-class WordView extends StatelessWidget {
+class WordView extends StatefulWidget {
   const WordView({
     Key? key,
     required this.size,
@@ -20,14 +21,32 @@ class WordView extends StatelessWidget {
   final bool solved;
 
   @override
+  State<WordView> createState() => _WordViewState();
+}
+
+class _WordViewState extends State<WordView> {
+  bool translated = false;
+
+  @override
   Widget build(BuildContext context) {
+    var orgWordText = widget.word.article.name();
+    var wortTextFuture;
+    if (translated) {
+      var translator = GoogleMlKit.nlp.onDeviceTranslator(
+          sourceLanguage: TranslateLanguage.GERMAN,
+          targetLanguage: TranslateLanguage.ENGLISH);
+      wortTextFuture = translator.translateText(orgWordText);
+    } else {
+      wortTextFuture = Future.value(orgWordText);
+    }
+
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           child: FutureBuilder<Uint8List>(
-            future: word.cachedImage,
+            future: widget.word.cachedImage,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.waiting) {
                 if (snapshot.hasData) {
@@ -40,7 +59,7 @@ class WordView extends StatelessWidget {
                 } else {
                   return new Icon(
                     Icons.warning,
-                    size: size * 0.7,
+                    size: widget.size * 0.7,
                     color: Colors.red,
                   );
                 }
@@ -56,7 +75,7 @@ class WordView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (solved)
+                if (widget.solved)
                   ClipRect(
                     child: TweenAnimationBuilder<double>(
                       tween: Tween(begin: 0.0, end: 1.0),
@@ -68,13 +87,31 @@ class WordView extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(top: 10, right: 7),
-                            child: Text(
-                              word.article.name(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w400,
-                              ),
+                            child: FutureBuilder<String>(
+                              future: wortTextFuture,
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState !=
+                                    ConnectionState.waiting) {
+                                  if (snapshot.hasData) {
+                                    return Text(
+                                      snapshot.data!,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    );
+                                  } else {
+                                    return new Icon(
+                                      Icons.warning,
+                                      size: widget.size * 0.7,
+                                      color: Colors.red,
+                                    );
+                                  }
+                                } else {
+                                  return CircularProgressIndicator();
+                                }
+                              },
                             ),
                           ),
                         );
@@ -84,7 +121,7 @@ class WordView extends StatelessWidget {
                 Flexible(
                   child: FittedBox(
                     child: Text(
-                      word.word,
+                      widget.word.word,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -100,10 +137,24 @@ class WordView extends StatelessWidget {
           ),
         ),
         Positioned(
+          top: 5,
+          right: 5,
+          child: IconButton(
+            onPressed: () {
+              setState(() {
+                translated = !translated;
+              });
+            },
+            icon: Icon(Icons.translate),
+            iconSize: 23,
+            color: Colors.white54,
+          ),
+        ),
+        Positioned(
           bottom: 5,
           left: 10,
           child: Container(
-            width: size,
+            width: widget.size,
             child: Wrap(
               children: <Widget>[
                 Text(
@@ -111,9 +162,9 @@ class WordView extends StatelessWidget {
                   style: TextStyle(color: Colors.white70),
                 ),
                 GestureDetector(
-                  onTap: () => launch(word.image.userLink),
+                  onTap: () => launch(widget.word.image.userLink),
                   child: Text(
-                    word.image.username,
+                    widget.word.image.username,
                     style: TextStyle(
                         color: Colors.white70,
                         decoration: TextDecoration.underline),
