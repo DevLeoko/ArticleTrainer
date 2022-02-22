@@ -7,6 +7,7 @@ import 'package:article_images/utils/article.dart';
 import 'package:article_images/utils/privacy_dialog_builder.dart';
 import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/challenge_button.dart';
+import 'package:article_images/widgets/language_unlock_dialog.dart';
 import 'package:article_images/widgets/theme_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -78,9 +79,13 @@ class HomeScreen extends StatelessWidget {
                             color: Article.der.color(),
                             text: FlutterI18n.translate(context, "home.begin"),
                             onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(PlayScreen.routeName);
-                              SettingsManger().playSound("tap");
+                              showDialog(
+                                context: context,
+                                builder: (context) => LanguageUnlockDialog(),
+                              );
+                              // Navigator.of(context)
+                              //     .pushNamed(PlayScreen.routeName);
+                              // SettingsManger().playSound("tap");
                             },
                           ),
                         ),

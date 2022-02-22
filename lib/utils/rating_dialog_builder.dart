@@ -1,4 +1,5 @@
 import 'package:article_images/screens/settings_screen.dart';
+import 'package:article_images/widgets/smooth_star_rating.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -28,7 +29,7 @@ Widget buildRatingDialog(context) {
 
         if (rating != null) {
           text = FlutterI18n.translate(
-              context, "rating.${rating <= 3 ? 'bad' : 'good'}Rating");
+              context, "rating.${rating! <= 3 ? 'bad' : 'good'}Rating");
         }
 
         return Column(
@@ -64,14 +65,13 @@ Widget buildRatingDialog(context) {
             SizedBox(
               height: 5,
             ),
-            //TODO
-            //   SmoothStarRating(
-            //   allowHalfRating: false,
-            //   borderColor: Colors.yellow.shade700,
-            //   color: Colors.yellow.shade600,
-            //   size: 35,
-            //   onRated: (val) => setState(() => rating = val.round()),
-            // ),
+            SmoothStarRating(
+              allowHalfRating: false,
+              borderColor: Colors.yellow.shade700,
+              color: Colors.yellow.shade600,
+              size: 35,
+              onRated: (val) => setState(() => rating = val.round()),
+            ),
             if (text != null)
               ClipRect(
                 child: TweenAnimationBuilder<double>(
@@ -114,7 +114,7 @@ Widget buildRatingDialog(context) {
                                     SizedBox(
                                       width: 4,
                                     ),
-                                    I18nText(rating <= 3
+                                    I18nText(rating! <= 3
                                         ? "rating.mail"
                                         : "rating.store"),
                                   ],

@@ -1,5 +1,6 @@
 import 'package:article_images/manager/settings_manager.dart';
 import 'package:article_images/screens/home_screen.dart';
+import 'package:article_images/utils/language_select_dialog_builder.dart';
 import 'package:article_images/utils/styles.dart';
 import 'package:article_images/widgets/background.dart';
 import 'package:article_images/widgets/home_button.dart';
@@ -17,6 +18,8 @@ class SettingsScreen extends StatefulWidget {
   static const use_analytics = "use_analytics";
   static const has_requested_rating = "has_requested_rating";
   static const language = "language";
+  static const unlocked_translation = "unlocked_translation";
+  static const translation_language = "translation_language";
   static const sounds = "sounds";
 
   @override
@@ -76,12 +79,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         callback: (val) => SettingsManger().sounds = val,
                       ),
                       ToggleSetting(
-                          name: FlutterI18n.translate(
-                              context, "settings.sendAnalytics"),
-                          tag: SettingsScreen.use_analytics,
-                          defaultValue: false,
-                          callback: (val) => FirebaseAnalytics()
-                              .setAnalyticsCollectionEnabled(val)),
+                        name: FlutterI18n.translate(
+                            context, "settings.sendAnalytics"),
+                        tag: SettingsScreen.use_analytics,
+                        defaultValue: false,
+                        callback: (val) => FirebaseAnalytics()
+                            .setAnalyticsCollectionEnabled(val),
+                      ),
+                      Column(
+                        children: [
+                          Text("Translation language:"),
+                          SizedBox(height: 3),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              I18nText(
+                                "language.${SettingsManger().translationLanguage}",
+                                child: Text("",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: buildLanguageSelectDialog,
+                                    ).then((value) => setState(() {}));
+                                  },
+                                  splashColor: Colors.blue,
+                                  child: Icon(
+                                    Icons.edit,
+                                    size: 20,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         height: 15,
                       ),

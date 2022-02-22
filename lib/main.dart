@@ -5,6 +5,7 @@ import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_i18n/loaders/decoders/yaml_decode_strategy.dart';
 import 'package:flutter_i18n/loaders/file_translation_loader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'screens/challenge_select_screen.dart';
 import 'screens/settings_screen.dart';
@@ -14,6 +15,7 @@ import 'screens/play_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
   runApp(MyApp());
 }

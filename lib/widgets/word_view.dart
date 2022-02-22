@@ -1,12 +1,14 @@
 import 'dart:typed_data';
 
+import 'package:article_images/manager/settings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:article_images/utils/article.dart';
 import 'package:article_images/utils/word.dart';
+
+import 'package:http/http.dart' as http;
 
 class WordView extends StatefulWidget {
   const WordView({
@@ -26,20 +28,29 @@ class WordView extends StatefulWidget {
 
 class _WordViewState extends State<WordView> {
   bool translated = false;
+  Future<String>? translation;
+
+  Future<String> _queryTranslation(String orgWordText) {
+    return translation ??= http
+        .get(Uri.https("us-central1-app-2b1a.cloudfunctions.net", "/main", {
+          "translate": "true",
+          "word": orgWordText,
+          "lang": SettingsManger().translationLanguage
+        }))
+        .timeout(Duration(seconds: 6))
+        .then((value) => value.body);
+  }
+
+  _toggleTranslation() {
+    if (!SettingsManger().unlockedTranslation) {}
+
+    setState(() {
+      translated = !translated;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    var orgWordText = widget.word.article.name();
-    var wortTextFuture;
-    if (translated) {
-      var translator = GoogleMlKit.nlp.onDeviceTranslator(
-          sourceLanguage: TranslateLanguage.GERMAN,
-          targetLanguage: TranslateLanguage.ENGLISH);
-      wortTextFuture = translator.translateText(orgWordText);
-    } else {
-      wortTextFuture = Future.value(orgWordText);
-    }
-
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -87,31 +98,13 @@ class _WordViewState extends State<WordView> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(top: 10, right: 7),
-                            child: FutureBuilder<String>(
-                              future: wortTextFuture,
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState !=
-                                    ConnectionState.waiting) {
-                                  if (snapshot.hasData) {
-                                    return Text(
-                                      snapshot.data!,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    );
-                                  } else {
-                                    return new Icon(
-                                      Icons.warning,
-                                      size: widget.size * 0.7,
-                                      color: Colors.red,
-                                    );
-                                  }
-                                } else {
-                                  return CircularProgressIndicator();
-                                }
-                              },
+                            child: Text(
+                              widget.word.article.name(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         );
@@ -120,16 +113,45 @@ class _WordViewState extends State<WordView> {
                   ),
                 Flexible(
                   child: FittedBox(
-                    child: Text(
-                      widget.word.word,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5,
-                      ),
-                    ),
+                    child: translated
+                        ? FutureBuilder<String>(
+                            future: _queryTranslation(widget.word.word),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState !=
+                                  ConnectionState.waiting) {
+                                if (snapshot.hasData) {
+                                  return Text(
+                                    snapshot.data!,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.5,
+                                    ),
+                                  );
+                                } else {
+                                  return new Icon(
+                                    Icons.warning,
+                                    size: 30,
+                                    color: Colors.red,
+                                  );
+                                }
+                              } else {
+                                return CircularProgressIndicator();
+                              }
+                            },
+                          )
+                        : Text(
+                            widget.word.word,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.5,
+                            ),
+                          ),
                   ),
                 ),
               ],
@@ -140,11 +162,7 @@ class _WordViewState extends State<WordView> {
           top: 5,
           right: 5,
           child: IconButton(
-            onPressed: () {
-              setState(() {
-                translated = !translated;
-              });
-            },
+            onPressed: _toggleTranslation,
             icon: Icon(Icons.translate),
             iconSize: 23,
             color: Colors.white54,

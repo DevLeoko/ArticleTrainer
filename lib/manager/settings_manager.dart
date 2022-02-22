@@ -21,6 +21,8 @@ class SettingsManger {
   late bool sounds;
   late bool askForAnalytics = false;
   String? language;
+  late String translationLanguage;
+  late bool unlockedTranslation;
 
   init(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -29,7 +31,13 @@ class SettingsManger {
 
     hideStreaks = prefs.getBool(SettingsScreen.hide_streak) ?? false;
 
+    unlockedTranslation =
+        prefs.getBool(SettingsScreen.unlocked_translation) ?? false;
+
     sounds = prefs.getBool(SettingsScreen.sounds) ?? true;
+
+    translationLanguage =
+        prefs.getString(SettingsScreen.translation_language) ?? "en";
 
     language = prefs.getString(SettingsScreen.language);
 

@@ -176,6 +176,7 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
             tag: widget.heroTag,
             flightShuttleBuilder: HomeScreen.roundedFlightShuttleBuild,
             child: WordView(
+              key: ValueKey(currentWord.word),
               size: size,
               word: currentWord,
               solved: currentGuess != null,
