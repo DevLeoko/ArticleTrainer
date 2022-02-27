@@ -1,14 +1,14 @@
-import 'package:article_images/manager/challenge_manager.dart';
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/screens/challenge_select_screen.dart';
-import 'package:article_images/screens/settings_screen.dart';
-import 'package:article_images/screens/play_screen.dart';
-import 'package:article_images/utils/article.dart';
-import 'package:article_images/utils/privacy_dialog_builder.dart';
-import 'package:article_images/widgets/background.dart';
-import 'package:article_images/widgets/challenge_button.dart';
-import 'package:article_images/widgets/language_unlock_dialog.dart';
-import 'package:article_images/widgets/theme_button.dart';
+import 'package:article_trainer/manager/challenge_manager.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/screens/challenge_select_screen.dart';
+import 'package:article_trainer/screens/settings_screen.dart';
+import 'package:article_trainer/screens/play_screen.dart';
+import 'package:article_trainer/utils/article.dart';
+import 'package:article_trainer/utils/privacy_dialog_builder.dart';
+import 'package:article_trainer/widgets/background.dart';
+import 'package:article_trainer/widgets/challenge_button.dart';
+import 'package:article_trainer/widgets/language_unlock_dialog.dart';
+import 'package:article_trainer/widgets/theme_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 

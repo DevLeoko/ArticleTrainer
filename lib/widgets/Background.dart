@@ -1,4 +1,4 @@
-import 'package:article_images/utils/styles.dart';
+import 'package:article_trainer/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

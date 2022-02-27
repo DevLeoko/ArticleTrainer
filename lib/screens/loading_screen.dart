@@ -1,9 +1,9 @@
-import 'package:article_images/manager/challenge_manager.dart';
-import 'package:article_images/manager/score_manager.dart';
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/utils/styles.dart';
-import 'package:article_images/utils/word_data_store.dart';
-import 'package:article_images/widgets/background.dart';
+import 'package:article_trainer/manager/challenge_manager.dart';
+import 'package:article_trainer/manager/score_manager.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/utils/styles.dart';
+import 'package:article_trainer/utils/word_data_store.dart';
+import 'package:article_trainer/widgets/background.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';

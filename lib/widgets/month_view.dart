@@ -1,7 +1,7 @@
-import 'package:article_images/widgets/challenge_button.dart';
+import 'package:article_trainer/widgets/challenge_button.dart';
 import 'package:flutter/material.dart';
 
-import 'package:article_images/utils/styles.dart';
+import 'package:article_trainer/utils/styles.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class MonthView extends StatelessWidget {

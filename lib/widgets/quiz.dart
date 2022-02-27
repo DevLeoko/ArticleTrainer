@@ -1,15 +1,15 @@
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/screens/home_screen.dart';
-import 'package:article_images/utils/styles.dart';
-import 'package:article_images/utils/word_data_store.dart';
-import 'package:article_images/widgets/background.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/screens/home_screen.dart';
+import 'package:article_trainer/utils/styles.dart';
+import 'package:article_trainer/utils/word_data_store.dart';
+import 'package:article_trainer/widgets/background.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:article_images/utils/article.dart';
-import 'package:article_images/utils/word.dart';
-import 'package:article_images/widgets/word_view.dart';
-import 'package:article_images/widgets/theme_button.dart';
+import 'package:article_trainer/utils/article.dart';
+import 'package:article_trainer/utils/word.dart';
+import 'package:article_trainer/widgets/word_view.dart';
+import 'package:article_trainer/widgets/theme_button.dart';
 
 class Quiz extends StatefulWidget {
   final Word? Function(bool) wordSupplier;

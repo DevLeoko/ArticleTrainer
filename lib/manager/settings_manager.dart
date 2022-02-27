@@ -1,6 +1,6 @@
-import 'package:article_images/screens/settings_screen.dart';
+import 'package:article_trainer/screens/settings_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -46,8 +46,8 @@ class SettingsManger {
     }
 
     if (!prefs.containsKey(SettingsScreen.use_analytics)) {
-      FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-      askForAnalytics = true;
+      // FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
+      // askForAnalytics = true;
     }
 
     audioPlayer.loadAll([

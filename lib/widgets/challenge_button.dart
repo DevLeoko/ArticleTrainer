@@ -1,10 +1,10 @@
-import 'package:article_images/manager/challenge_manager.dart';
-import 'package:article_images/screens/challenge_play_screen.dart';
-import 'package:article_images/utils/styles.dart';
-import 'package:article_images/utils/word.dart';
+import 'package:article_trainer/manager/challenge_manager.dart';
+import 'package:article_trainer/screens/challenge_play_screen.dart';
+import 'package:article_trainer/utils/styles.dart';
+import 'package:article_trainer/utils/word.dart';
 import 'package:flutter/material.dart';
 
-import 'package:article_images/widgets/month_view.dart';
+import 'package:article_trainer/widgets/month_view.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class ChallengeButton extends StatefulWidget {

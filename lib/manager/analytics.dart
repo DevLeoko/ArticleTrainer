@@ -1,6 +1,6 @@
-import 'package:article_images/manager/score_manager.dart';
-import 'package:article_images/utils/word_data_store.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:article_trainer/manager/score_manager.dart';
+import 'package:article_trainer/utils/word_data_store.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
 
 void logStats() {
   int wordsTouched = 0;
@@ -18,16 +18,16 @@ void logStats() {
 
   final averageScore = totalGuessed / totalOcurred;
 
-  FirebaseAnalytics().logEvent(
-    name: "learning_progress",
-    parameters: {
-      "overall_streak": ScoreManager().allStreak,
-      "monthly_streak": ScoreManager().montlyStreak,
-      "daily_streak": ScoreManager().dailyStreak,
-      "words_touched": wordsTouched,
-      "total_ocurred": totalOcurred,
-      "total_guessed": totalGuessed,
-      "average_score": averageScore,
-    },
-  );
+  // FirebaseAnalytics().logEvent(
+  //   name: "learning_progress",
+  //   parameters: {
+  //     "overall_streak": ScoreManager().allStreak,
+  //     "monthly_streak": ScoreManager().montlyStreak,
+  //     "daily_streak": ScoreManager().dailyStreak,
+  //     "words_touched": wordsTouched,
+  //     "total_ocurred": totalOcurred,
+  //     "total_guessed": totalGuessed,
+  //     "average_score": averageScore,
+  //   },
+  // );
 }

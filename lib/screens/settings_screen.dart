@@ -1,10 +1,10 @@
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/screens/home_screen.dart';
-import 'package:article_images/utils/language_select_dialog_builder.dart';
-import 'package:article_images/utils/styles.dart';
-import 'package:article_images/widgets/background.dart';
-import 'package:article_images/widgets/home_button.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/screens/home_screen.dart';
+import 'package:article_trainer/utils/language_select_dialog_builder.dart';
+import 'package:article_trainer/utils/styles.dart';
+import 'package:article_trainer/widgets/background.dart';
+import 'package:article_trainer/widgets/home_button.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,14 +78,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         defaultValue: true,
                         callback: (val) => SettingsManger().sounds = val,
                       ),
-                      ToggleSetting(
-                        name: FlutterI18n.translate(
-                            context, "settings.sendAnalytics"),
-                        tag: SettingsScreen.use_analytics,
-                        defaultValue: false,
-                        callback: (val) => FirebaseAnalytics()
-                            .setAnalyticsCollectionEnabled(val),
-                      ),
+                      // ToggleSetting(
+                      //   name: FlutterI18n.translate(
+                      //       context, "settings.sendAnalytics"),
+                      //   tag: SettingsScreen.use_analytics,
+                      //   defaultValue: false,
+                      //   callback: (val) => FirebaseAnalytics()
+                      //       .setAnalyticsCollectionEnabled(val),
+                      // ), TODO
                       Column(
                         children: [
                           Text("Translation language:"),

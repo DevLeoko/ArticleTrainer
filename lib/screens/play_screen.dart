@@ -1,12 +1,12 @@
-import 'package:article_images/manager/analytics.dart';
-import 'package:article_images/manager/score_manager.dart';
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/utils/rating_dialog_builder.dart';
-import 'package:article_images/utils/word.dart';
-import 'package:article_images/utils/word_data_store.dart';
-import 'package:article_images/widgets/score_view.dart';
-import 'package:article_images/widgets/interactive_base.dart';
-import 'package:article_images/widgets/quiz.dart';
+import 'package:article_trainer/manager/analytics.dart';
+import 'package:article_trainer/manager/score_manager.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/utils/rating_dialog_builder.dart';
+import 'package:article_trainer/utils/word.dart';
+import 'package:article_trainer/utils/word_data_store.dart';
+import 'package:article_trainer/widgets/score_view.dart';
+import 'package:article_trainer/widgets/interactive_base.dart';
+import 'package:article_trainer/widgets/quiz.dart';
 import 'package:flutter/material.dart';
 
 class PlayScreen extends StatefulWidget {

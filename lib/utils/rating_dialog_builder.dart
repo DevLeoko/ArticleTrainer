@@ -1,6 +1,6 @@
-import 'package:article_images/screens/settings_screen.dart';
-import 'package:article_images/widgets/smooth_star_rating.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:article_trainer/screens/settings_screen.dart';
+import 'package:article_trainer/widgets/smooth_star_rating.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,10 +15,10 @@ Widget buildRatingDialog(context) {
       TextButton(
         onPressed: () {
           Navigator.pop(context);
-          FirebaseAnalytics().logEvent(name: "rating", parameters: {
-            'value': rating,
-            'time_spent': DateTime.now().difference(time).inSeconds
-          });
+          // FirebaseAnalytics().logEvent(name: "rating", parameters: {
+          //   'value': rating,
+          //   'time_spent': DateTime.now().difference(time).inSeconds
+          // });
         },
         child: I18nText("rating.exit"),
       )

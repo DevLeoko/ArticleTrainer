@@ -1,4 +1,4 @@
-import 'package:article_images/screens/challenge_play_screen.dart';
+import 'package:article_trainer/screens/challenge_play_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';

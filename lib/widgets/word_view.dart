@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
-import 'package:article_images/manager/settings_manager.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:article_images/utils/article.dart';
-import 'package:article_images/utils/word.dart';
+import 'package:article_trainer/utils/article.dart';
+import 'package:article_trainer/utils/word.dart';
 
 import 'package:http/http.dart' as http;
 

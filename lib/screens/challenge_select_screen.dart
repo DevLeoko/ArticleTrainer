@@ -1,7 +1,7 @@
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/utils/styles.dart';
-import 'package:article_images/widgets/interactive_base.dart';
-import 'package:article_images/widgets/month_view.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/utils/styles.dart';
+import 'package:article_trainer/widgets/interactive_base.dart';
+import 'package:article_trainer/widgets/month_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 

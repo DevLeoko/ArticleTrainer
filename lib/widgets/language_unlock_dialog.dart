@@ -1,7 +1,7 @@
-import 'package:article_images/manager/settings_manager.dart';
-import 'package:article_images/screens/settings_screen.dart';
-import 'package:article_images/utils/language_select_dialog_builder.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/screens/settings_screen.dart';
+import 'package:article_trainer/utils/language_select_dialog_builder.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/widgets/I18nText.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -79,7 +79,7 @@ class _LanguageUnlockDialogState extends State<LanguageUnlockDialog> {
       actions: [
         TextButton(
           onPressed: () {
-            FirebaseAnalytics().logEvent(name: "decline-language-unlock");
+            // FirebaseAnalytics().logEvent(name: "decline-language-unlock");
             loading = false;
             Navigator.pop(context, false);
           },

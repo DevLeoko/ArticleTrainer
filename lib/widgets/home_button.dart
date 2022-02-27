@@ -1,4 +1,4 @@
-import 'package:article_images/manager/settings_manager.dart';
+import 'package:article_trainer/manager/settings_manager.dart';
 import 'package:flutter/material.dart';
 
 class HomeButton extends StatelessWidget {

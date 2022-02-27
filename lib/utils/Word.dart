@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:article_images/utils/image.dart';
+import 'package:article_trainer/utils/image.dart';
 import 'package:http/http.dart' as http;
 
 import 'article.dart';

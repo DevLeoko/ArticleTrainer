@@ -1,4 +1,4 @@
-# article_images
+# article_trainer
 
 A new Flutter project.
 

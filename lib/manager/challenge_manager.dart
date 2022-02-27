@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:article_images/utils/challenge_data.dart';
-import 'package:article_images/utils/word.dart';
-import 'package:article_images/utils/word_data_store.dart';
+import 'package:article_trainer/utils/challenge_data.dart';
+import 'package:article_trainer/utils/word.dart';
+import 'package:article_trainer/utils/word_data_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;

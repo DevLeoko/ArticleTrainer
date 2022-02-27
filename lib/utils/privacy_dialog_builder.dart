@@ -1,5 +1,5 @@
-import 'package:article_images/screens/settings_screen.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:article_trainer/screens/settings_screen.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,7 +32,7 @@ Widget buildPrivacyDialog(context) {
             setState(() => loading = true);
             final preferences = await SharedPreferences.getInstance();
             await preferences.setBool(SettingsScreen.use_analytics, false);
-            FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
+            // FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
             Navigator.pop(context);
           },
           child: !loading
@@ -51,7 +51,7 @@ Widget buildPrivacyDialog(context) {
             setState(() => loading = true);
             final preferences = await SharedPreferences.getInstance();
             await preferences.setBool(SettingsScreen.use_analytics, true);
-            FirebaseAnalytics().setAnalyticsCollectionEnabled(true);
+            // FirebaseAnalytics().setAnalyticsCollectionEnabled(true);
             Navigator.pop(context);
           },
           child: !loading
