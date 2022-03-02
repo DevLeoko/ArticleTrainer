@@ -36,7 +36,7 @@ export const main = functions.https.onRequest((request, response) => {
         response.send(resp['data']['translations'][0]['translatedText']);
       }).catch(_ => response.sendStatus(500));
   } else if (request.query.challenge) {
-    const dayCode: number = request.query.daycode;
+    const dayCode: string = request.query.daycode as string;
     const rand = new SeededRandomUtilities(dayCode.toString());
 
     const challengeWords: string[] = [];
