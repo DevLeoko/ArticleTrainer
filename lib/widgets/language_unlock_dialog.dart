@@ -1,6 +1,7 @@
 import 'package:article_trainer/manager/settings_manager.dart';
 import 'package:article_trainer/screens/settings_screen.dart';
 import 'package:article_trainer/utils/language_select_dialog_builder.dart';
+import 'package:article_trainer/utils/naviagtion_service.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/widgets/I18nText.dart';
@@ -28,16 +29,37 @@ class _LanguageUnlockDialogState extends State<LanguageUnlockDialog> {
         onAdLoaded: (ad) {
           if (!loading) return;
 
+          bool success = false;
+
           Navigator.of(context).pop();
           ad.show(
             onUserEarnedReward: (ad, reward) {
-              setState(() {
-                loading = false;
-              });
               SettingsManger().unlockedTranslation = true;
               SharedPreferences.getInstance().then((prefs) =>
                   prefs.setBool(SettingsScreen.unlocked_translation, true));
-              showLanguageSelectDialog(context);
+              success = true;
+            },
+          );
+
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              if (success == true)
+                showLanguageSelectDialog(
+                    NavigationService.navigatorKey.currentContext);
+              else
+                showDialog(
+                  context: NavigationService.navigatorKey.currentContext!,
+                  builder: (context) => AlertDialog(
+                    title: I18nText("language.unlock.uncomplete"),
+                    content: I18nText("language.unlock.uncompleteText"),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: I18nText("language.unlock.close"),
+                      )
+                    ],
+                  ),
+                );
             },
           );
         },

@@ -67,7 +67,7 @@ rating:
 
 privacy:
   title: "Hilf dabei diese App zu verbessern"
-  text: >- 
+  text: >-
     Um die App zu verbessern, würden wir gerne Statistiken über dein Nutzerverhalten erfassen.
     So verstehen wir besser, was unseren Nutzern wichtig ist und was wir noch verbessern können.
     Diese Entscheidung kannst du jederzeit in den Einstellungen ändern.
@@ -84,6 +84,8 @@ language:
     no: "No thanks"
     error: "Failed loading ad"
     errorText: "There was an issue loading the AD, try again later."
+    uncomplete: "Abgebrochen"
+    uncompleteText: "Du hast die Werbung zu früh geschlossen."
     close: "Close"
   selectLanguage: "Wähle die Sprache für Übersetungen aus:"
   af: "Afrikaans"

@@ -79,13 +79,9 @@ class HomeScreen extends StatelessWidget {
                             color: Article.der.color(),
                             text: FlutterI18n.translate(context, "home.begin"),
                             onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => LanguageUnlockDialog(),
-                              );
-                              // Navigator.of(context)
-                              //     .pushNamed(PlayScreen.routeName);
-                              // SettingsManger().playSound("tap");
+                              Navigator.of(context)
+                                  .pushNamed(PlayScreen.routeName);
+                              SettingsManger().playSound("tap");
                             },
                           ),
                         ),

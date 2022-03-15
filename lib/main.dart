@@ -1,4 +1,5 @@
 import 'package:article_trainer/screens/challenge_play_screen.dart';
+import 'package:article_trainer/utils/naviagtion_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      navigatorKey: NavigationService.navigatorKey,
       localizationsDelegates: [
         FlutterI18nDelegate(
           translationLoader: FileTranslationLoader(

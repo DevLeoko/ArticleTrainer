@@ -84,6 +84,8 @@ language:
     no: "No thanks"
     error: "Failed loading ad"
     errorText: "There was an issue loading the ad, please try again later."
+    uncomplete: "Ad closed too early"
+    uncompleteText: "You closed the ad too early to unlock translations."
     close: "Close"
   selectLanguage: "Select the langauge for word translations:"
   af: "Afrikaans"

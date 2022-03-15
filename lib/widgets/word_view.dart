@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/widgets/language_unlock_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,7 +43,13 @@ class _WordViewState extends State<WordView> {
   }
 
   _toggleTranslation() {
-    if (!SettingsManger().unlockedTranslation) {}
+    if (!SettingsManger().unlockedTranslation) {
+      showDialog(
+        context: context,
+        builder: (context) => LanguageUnlockDialog(),
+      );
+      return;
+    }
 
     setState(() {
       translated = !translated;
