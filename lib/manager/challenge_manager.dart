@@ -58,7 +58,7 @@ class ChallengeManager {
   Future<List<Word>> startChallenge(int dayCode) async {
     final data = await http
         .get(Uri.https("us-central1-app-2b1a.cloudfunctions.net", "/main",
-            {"challenge": true, "daycode": dayCode}))
+            {"challenge": "true", "daycode": dayCode.toString()}))
         .timeout(Duration(seconds: 6));
 
     if (data.statusCode != 200) {
