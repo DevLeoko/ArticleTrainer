@@ -13,17 +13,20 @@ export const main = functions.https.onRequest((request, response) => {
     const word = request.query.word;
     const lang = request.query.lang;
 
-    if (!data.some(ent => ent.word == word)) {
+    const wordData = data.find(ent => ent.word == word)
+    if (!wordData) {
       response.sendStatus(404);
       return;
     }
+
+    const article = wordData.type == "m" ? "Der" : wordData.type == "f" ? "Die" : "Das"
 
     fetch(
       `https://translation.googleapis.com/language/translate/v2?key=${process.env.TRANSLATE_API_KEY}`,
       {
         method: "POST",
         body: JSON.stringify({
-          'q': word,
+          'q': `${article} ${word}`,
           'source': 'de',
           'target': lang
         }),
