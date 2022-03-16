@@ -78,15 +78,15 @@ privacy:
 
 language:
   unlock:
-    title: "Unlock translation"
-    text: "You have to watch one ad to unlock the translation feature"
-    yes: "Let's do it"
-    no: "No thanks"
-    error: "Failed loading ad"
-    errorText: "There was an issue loading the AD, try again later."
+    title: "Übersetzungen freischalten"
+    text: "Du musst dir eine Werbung angucken, um die Übersetzungs-Funktion frei zu schalten. Das hilft uns die Kosten für den Übersetzungs-Service und die Entwicklungskosten zu zahlen"
+    yes: "Alles klar"
+    no: "Nein danke"
+    error: "Fehler"
+    errorText: "Es gab einen Fehler beim Laden der Werbung, versuche es später erneut."
     uncomplete: "Abgebrochen"
     uncompleteText: "Du hast die Werbung zu früh geschlossen."
-    close: "Close"
+    close: "Schließen"
   selectLanguage: "Wähle die Sprache für Übersetungen aus:"
   af: "Afrikaans"
   sq: "Albanisch"
