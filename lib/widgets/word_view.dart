@@ -1,15 +1,19 @@
 import 'dart:typed_data';
 
 import 'package:article_trainer/manager/settings_manager.dart';
+import 'package:article_trainer/utils/language_select_dialog_builder.dart';
 import 'package:article_trainer/widgets/language_unlock_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:article_trainer/utils/article.dart';
 import 'package:article_trainer/utils/word.dart';
 
 import 'package:http/http.dart' as http;
+
+import '../screens/settings_screen.dart';
 
 class WordView extends StatefulWidget {
   const WordView({
@@ -44,10 +48,11 @@ class _WordViewState extends State<WordView> {
 
   _toggleTranslation() {
     if (!SettingsManger().unlockedTranslation) {
-      showDialog(
-        context: context,
-        builder: (context) => LanguageUnlockDialog(),
-      );
+      showLanguageSelectDialog(context);
+
+      SettingsManger().unlockedTranslation = true;
+      SharedPreferences.getInstance().then(
+          (prefs) => prefs.setBool(SettingsScreen.unlocked_translation, true));
       return;
     }
 
